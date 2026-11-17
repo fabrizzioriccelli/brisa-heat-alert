@@ -80,7 +80,7 @@ O **Brisa** junta três camadas:
 
 ### 🔗 Links do Projeto
 
-* **[Vídeo demonstrativo no YouTube (não listado)](http://url-aqui)**: até 5 minutos, começa com "QUERO CONCORRER".
+* **[Vídeo demonstrativo no YouTube (não listado)](http://url-aqui)**: 4min17s, com a demonstração da solução.
 * **[Relatório em PDF](docs/Brisa_GS2026-2_Relatorio.pdf)**: documento de entrega.
 * **[Simulação do ESP32 no Wokwi](http://url-aqui)**: projeto público com `src/esp32/`.
 
@@ -102,7 +102,7 @@ O **Brisa** junta três camadas:
 
 ### 📢 Observações Gerais
 
-* **Participação na Competição:** [x] Sim, aceitamos participar / [ ] Não vamos participar.
+* **Participação na Competição:** [ ] Sim, aceitamos participar / [x] Não vamos participar.
 * *Outras observações gerais:* Tudo que aparece como **simulado** (escola, ambientes e leituras internas) está identificado assim no código, no banco (`origem = 'simulado'`, `simulada = 1`), no painel e no relatório. As análises e os modelos usam apenas dados meteorológicos **reais**.
 
 ## 🔧 Como executar o código
