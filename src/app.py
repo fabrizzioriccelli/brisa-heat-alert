@@ -23,6 +23,16 @@ st.markdown("""
 .brisa-card {border:1px solid rgba(128,128,128,.25);border-radius:12px;padding:14px 16px}
 .brisa-card h4 {margin:0 0 4px 0;font-size:.85rem;opacity:.7;font-weight:500}
 .brisa-card p {margin:0;font-size:1.6rem;font-weight:700}
+.brisa-card {background:#fff}
+.block-container {padding-top:2.2rem !important}
+.brisa-head {display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:18px 22px;border-radius:16px;background:linear-gradient(120deg,#7A1F3D,#D63E2F 55%,#F08A24);color:#fff;margin-bottom:6px}
+.brisa-head h1 {margin:0;font-size:2.1rem;color:#fff;padding:0}
+.brisa-head p {margin:2px 0 0;opacity:.92;font-size:.98rem}
+.brisa-chip {display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;padding:3px 10px;margin:3px 0 3px 6px;font-size:.78rem;white-space:nowrap}
+.brisa-faixas {display:flex;gap:4px;margin:6px 0 14px} .brisa-faixas span {flex:1;text-align:center;
+  font-size:.74rem;padding:4px 2px;border-radius:6px;color:#fff;font-weight:600}
 </style>""", unsafe_allow_html=True)
 
 
@@ -54,8 +64,15 @@ except FileNotFoundError as e:
     st.error(f"{e}\n\nExecute antes: `python src/main.py tudo`")
     st.stop()
 
-st.title("🌬️ Brisa")
-st.caption("Calor seguro na escola: previsão com IA às 09h + sensores nas salas + recomendações para a coordenação.")
+st.markdown("""<div class="brisa-head"><div><h1>🌬️ Brisa</h1>
+<p>Calor seguro na escola: previsão com IA às 09h, sensores nas salas e recomendações para a coordenação.</p></div>
+<div><span class="brisa-chip">Dados reais · Open-Meteo/ERA5</span><span class="brisa-chip">IA · Random Forest</span>
+<span class="brisa-chip">Sensores · ESP32 + DHT22</span></div></div>""", unsafe_allow_html=True)
+_faixas = [("Normal", "< 26,7 °C"), ("Cautela", "26,7–32,2"), ("Cautela extrema", "32,2–39,4"),
+           ("Perigo", "39,4–51,7"), ("Perigo extremo", "≥ 51,7")]
+st.markdown('<div class="brisa-faixas">' + "".join(
+    f'<span style="background:{config.CORES_CATEGORIA[n]};color:{"#222" if n == "Cautela" else "#fff"}">{n} · {v}</span>'
+    for n, v in _faixas) + "</div>", unsafe_allow_html=True)
 
 aba1, aba2, aba3, aba4 = st.tabs(["☀️ Boletim das 09h", "🏫 Salas em tempo real",
                                   "📊 Panorama 2020-2025", "🧮 Calculadora"])
@@ -69,46 +86,48 @@ with aba1:
                         max_value=date(2025, 12, 31), format="DD/MM/YYYY")
     try:
         b = servicos.boletim_do_dia(cidade, dia, diario, mods)
-    except ValueError as e:
-        st.warning(f"{e} Escolha um dia de segunda a sexta.")
-        st.stop()
+    except ValueError:
+        b = None
+        st.warning("Não há boletim para esse dia: escolha um dia útil (segunda a sexta) entre 2020 e 2025.")
 
-    k1, k2, k3, k4 = st.columns(4)
-    card(k1, "Temperatura às 09h", f"{b['manha']['temp_09h']:.1f} °C")
-    card(k2, "Umidade às 09h", f"{b['manha']['umidade_09h']:.0f} %")
-    card(k3, "Índice de calor às 09h", f"{b['manha']['ic_09h']:.1f} °C")
-    card(k4, "Pico previsto 12h-17h", f"{b['pico_previsto']:.1f} °C")
+if b is not None:
+    with aba1:
+        k1, k2, k3, k4 = st.columns(4)
+        card(k1, "Temperatura às 09h", f"{b['manha']['temp_09h']:.1f} °C")
+        card(k2, "Umidade às 09h", f"{b['manha']['umidade_09h']:.0f} %")
+        card(k3, "Índice de calor às 09h", f"{b['manha']['ic_09h']:.1f} °C")
+        card(k4, "Pico previsto 12h-17h", f"{b['pico_previsto']:.1f} °C")
 
-    st.markdown(f"### Faixa prevista para a tarde: {badge(b['faixa_final'])}", unsafe_allow_html=True)
-    if b["aviso_perigo"]:
-        st.warning("Aviso preventivo: a probabilidade de PERIGO passou do limiar de segurança do modelo.")
+        st.markdown(f"### Faixa prevista para a tarde: {badge(b['faixa_final'])}", unsafe_allow_html=True)
+        if b["aviso_perigo"]:
+            st.warning("Aviso preventivo: a probabilidade de PERIGO passou do limiar de segurança do modelo.")
 
-    e, d = st.columns([1.1, 1])
-    with e:
-        st.markdown("**O que fazer hoje**")
-        for r in b["recomendacoes"]:
-            st.markdown(f"- {r}")
-        st.markdown("**Probabilidade de cada faixa (Random Forest)**")
-        probs = pd.DataFrame({"faixa": list(b["probabilidades"]),
-                              "prob": list(b["probabilidades"].values())})
-        st.altair_chart(alt.Chart(probs).mark_bar().encode(
-            x=alt.X("prob:Q", axis=alt.Axis(format="%"), title=None),
-            y=alt.Y("faixa:N", sort=modelo.CLASSES, title=None),
-            color=alt.Color("faixa:N", scale=alt.Scale(domain=list(config.CORES_CATEGORIA),
-                                                        range=list(config.CORES_CATEGORIA.values())),
-                            legend=None)).properties(height=150), width="stretch")
-    with d:
-        st.markdown("**Curva real do dia (dado ERA5) — verificação do boletim**")
-        g = horario[(horario["cidade"] == cidade) & (horario["data"] == dia)]
-        base = alt.Chart(g).encode(x=alt.X("hora:Q", title="hora"))
-        linha = base.mark_line(point=True, color="#F08A24").encode(
-            y=alt.Y("indice_calor:Q", title="índice de calor (°C)", scale=alt.Scale(zero=False)),
-            tooltip=["hora", "temp", "umidade", "indice_calor", "categoria"])
-        limiar = alt.Chart(pd.DataFrame({"y": [config.LIMIAR_ALERTA]})).mark_rule(
-            color="#D63E2F", strokeDash=[4, 4]).encode(y="y:Q")
-        st.altair_chart(linha + limiar, width="stretch")
-        st.caption(f"Pico observado entre 12h e 17h: **{b['pico_observado']:.1f} °C** "
-                   f"({b['faixa_observada']}). A linha tracejada marca 32,2 °C.")
+        e, d = st.columns([1.1, 1])
+        with e:
+            st.markdown("**O que fazer hoje**")
+            for r in b["recomendacoes"]:
+                st.markdown(f"- {r}")
+            st.markdown("**Probabilidade de cada faixa (Random Forest)**")
+            probs = pd.DataFrame({"faixa": list(b["probabilidades"]),
+                                  "prob": list(b["probabilidades"].values())})
+            st.altair_chart(alt.Chart(probs).mark_bar().encode(
+                x=alt.X("prob:Q", axis=alt.Axis(format="%"), title=None),
+                y=alt.Y("faixa:N", sort=modelo.CLASSES, title=None),
+                color=alt.Color("faixa:N", scale=alt.Scale(domain=list(config.CORES_CATEGORIA),
+                                                            range=list(config.CORES_CATEGORIA.values())),
+                                legend=None)).properties(height=150), width="stretch")
+        with d:
+            st.markdown("**Curva real do dia (dado ERA5) — verificação do boletim**")
+            g = horario[(horario["cidade"] == cidade) & (horario["data"] == dia)]
+            base = alt.Chart(g).encode(x=alt.X("hora:Q", title="hora"))
+            linha = base.mark_line(point=True, color="#F08A24").encode(
+                y=alt.Y("indice_calor:Q", title="índice de calor (°C)", scale=alt.Scale(zero=False)),
+                tooltip=["hora", "temp", "umidade", "indice_calor", "categoria"])
+            limiar = alt.Chart(pd.DataFrame({"y": [config.LIMIAR_ALERTA]})).mark_rule(
+                color="#D63E2F", strokeDash=[4, 4]).encode(y="y:Q")
+            st.altair_chart(linha + limiar, width="stretch")
+            st.caption(f"Pico observado entre 12h e 17h: **{b['pico_observado']:.1f} °C** "
+                       f"({b['faixa_observada']}). A linha tracejada marca 32,2 °C.")
 
 # ------------------------------------------------------------------ Salas
 with aba2:

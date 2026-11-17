@@ -1,0 +1,208 @@
+1
+00:00:00,346 --> 00:00:05,936
+Olá! Nós somos Bruna, Fábio, Fabrizzio, Gabriel e Natasha, e este é o Brisa:
+
+2
+00:00:05,956 --> 00:00:08,670
+calor seguro na escola.
+
+3
+00:00:09,205 --> 00:00:13,355
+O calor extremo já está tirando crianças da sala de aula.
+
+4
+00:00:13,375 --> 00:00:20,255
+Em 2024, segundo o UNICEF, as ondas de calor foram o evento climático que mais afetou
+
+5
+00:00:20,275 --> 00:00:25,625
+a escolarização no mundo: cerca de 171 milhões de estudantes.
+
+6
+00:00:25,645 --> 00:00:32,525
+No Brasil, um estudo publicado na PLOS ONE estimou mais de 48 mil mortes ligadas a
+
+7
+00:00:32,545 --> 00:00:34,960
+ondas de calor entre 2000 e 2018.
+
+8
+00:00:35,495 --> 00:00:39,135
+Os alertas que existem hoje falam da cidade, não da sala de aula.
+
+9
+00:00:39,155 --> 00:00:43,755
+A coordenadora não sabe qual sala vai ficar perigosa, nem a que horas,
+
+10
+00:00:43,775 --> 00:00:48,110
+nem o que fazer. E, na prática, só reage quando alguém passa mal.
+
+11
+00:00:48,645 --> 00:00:51,595
+O Brisa resolve isso em três camadas.
+
+12
+00:00:51,615 --> 00:00:57,355
+Às 9h, um modelo de inteligência artificial prevê o pico de calor da tarde.
+
+13
+00:00:57,375 --> 00:01:03,805
+Durante o dia, sensores com ESP32 medem cada sala e avisam no próprio ambiente.
+
+14
+00:01:03,825 --> 00:01:07,765
+E um backend em Python, com banco SQLite, valida as leituras,
+
+15
+00:01:07,785 --> 00:01:11,610
+gera alertas e mostra tudo num painel.
+
+16
+00:01:12,115 --> 00:01:15,005
+Começamos pelos dados reais:
+
+17
+00:01:15,025 --> 00:01:19,055
+seis anos de medições, hora a hora, de 2020 a 2025, em cinco capitais.
+
+18
+00:01:19,075 --> 00:01:26,765
+São 263 mil registros. Em Teresina, 61% das horas de aula ficam em cautela extrema ou pior.
+
+19
+00:01:26,785 --> 00:01:33,545
+Em Manaus, metade. E o pico diário subiu mais de 1 °C entre os dois triênios,
+
+20
+00:01:33,565 --> 00:01:37,990
+com teste estatístico significativo.
+
+21
+00:01:38,525 --> 00:01:46,245
+Este é o boletim das 9h. Em 18 de fevereiro de 2025, no Rio de Janeiro, o Brisa previu um pico de 39,5 °C:
+
+22
+00:01:46,265 --> 00:01:50,265
+faixa de perigo. O pico real foi de 39,8 °C.
+
+23
+00:01:50,285 --> 00:01:52,540
+E o painel já diz o que fazer:
+
+24
+00:01:52,560 --> 00:01:59,760
+suspender a educação física, remanejar as turmas e avisar as famílias.
+
+25
+00:02:00,250 --> 00:02:06,470
+Para chegar nisso, treinamos o modelo com os dados de 2020 a 2023 e testamos com 2024
+
+26
+00:02:06,490 --> 00:02:08,120
+e 2025, anos que ele nunca viu.
+
+27
+00:02:08,140 --> 00:02:12,230
+O Random Forest erra o pico, em média, em 1,3 °C,
+
+28
+00:02:12,250 --> 00:02:18,170
+e acerta a faixa de risco em 84% dos dias, superando a linha de base.
+
+29
+00:02:18,190 --> 00:02:27,700
+Como o perigo é raro, calibramos um aviso preventivo que identifica 87% desses dias.
+
+30
+00:02:28,220 --> 00:02:34,233
+Agora, o sensor na sala. Este é o firmware real rodando no simulador Wokwi:
+
+31
+00:02:34,253 --> 00:02:41,700
+um ESP32 com sensor DHT22. Ele calcula o índice de calor no próprio chip, então funciona mesmo sem internet.
+
+32
+00:02:41,720 --> 00:02:49,321
+Conforme a temperatura sobe, o LED muda de verde para amarelo e depois para vermelho,
+
+33
+00:02:49,341 --> 00:02:54,620
+com alerta sonoro. E cada leitura é enviada em JSON para o backend.
+
+34
+00:02:55,110 --> 00:02:58,603
+No backend, cada leitura é validada antes de entrar no banco.
+
+35
+00:02:58,623 --> 00:03:03,670
+Leituras corrompidas são rejeitadas, e o motivo fica registrado.
+
+36
+00:03:03,690 --> 00:03:09,370
+Nesta demonstração, com uma escola fictícia e leituras simuladas a partir do clima
+
+37
+00:03:09,390 --> 00:03:12,550
+real, a sala do 2º andar passa mais tempo em perigo,
+
+38
+00:03:12,570 --> 00:03:16,310
+e o Brisa indica a sala térrea para receber as turmas.
+
+39
+00:03:16,785 --> 00:03:20,815
+São 32 testes automatizados, todos passando.
+
+40
+00:03:20,835 --> 00:03:27,236
+Um deles compila o código C++ do ESP32 e confere se ele calcula exatamente o mesmo
+
+41
+00:03:27,256 --> 00:03:33,445
+que o Python. E os testes ainda encontraram dois bugs reais no armazenamento das leituras,
+
+42
+00:03:33,465 --> 00:03:35,610
+que nós corrigimos.
+
+43
+00:03:36,115 --> 00:03:40,205
+O projeto integra programação em Python, estatística,
+
+44
+00:03:40,225 --> 00:03:45,575
+análise de dados com Pandas e Seaborn, aprendizado de máquina,
+
+45
+00:03:45,595 --> 00:03:48,124
+banco de dados e internet das coisas.
+
+46
+00:03:48,144 --> 00:03:52,930
+E contribui com os ODS 3, 4, 11 e 13.
+
+47
+00:03:53,405 --> 00:03:56,565
+Para medir o impacto, propomos acompanhar, num piloto real,
+
+48
+00:03:56,585 --> 00:03:59,955
+as horas de aula em risco em cada sala e a antecedência dos avisos.
+
+49
+00:03:59,975 --> 00:04:08,235
+Sabemos das limitações: os dados externos têm baixa resolução, e as leituras internas da demonstração são
+
+50
+00:04:08,255 --> 00:04:11,925
+simuladas. O próximo passo é instalar sensores de verdade.
+
+51
+00:04:11,945 --> 00:04:14,958
+Brisa: menos calor, mais aula.
+
+52
+00:04:14,978 --> 00:04:16,740
+Obrigado!
+

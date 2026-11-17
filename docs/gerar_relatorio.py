@@ -110,7 +110,7 @@ testes_unicos = list(dict.fromkeys(linhas_testes))
 
 # ------------------------------------------------------------------ diagrama de arquitetura (SVG)
 ARQ_SVG = """
-<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial" font-size="12">
+<svg viewBox="0 0 900 378" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial" font-size="12">
  <defs><marker id="s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
  <path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker></defs>
  <rect x="10" y="20" width="190" height="150" rx="10" fill="#FFF4E6" stroke="#F08A24"/>
@@ -149,7 +149,7 @@ ARQ_SVG = """
  <text x="777" y="308" text-anchor="middle">LEDs verde/amarelo/</text><text x="777" y="324" text-anchor="middle">vermelho + buzzer</text>
  <line x1="810" y1="170" x2="810" y2="228" stroke="#555" marker-end="url(#s)"/>
  <line x1="590" y1="170" x2="590" y2="228" stroke="#555" marker-end="url(#s)"/>
- <path d="M105,170 L105,300 L680,300" fill="none" stroke="#D63E2F" stroke-dasharray="4 3" marker-end="url(#s)"/>
+ <path d="M105,170 L105,366 L777,366 L777,338" fill="none" stroke="#D63E2F" stroke-dasharray="4 3" marker-end="url(#s)"/>
  <text x="112" y="215" fill="#D63E2F">o ESP32 avisa</text><text x="112" y="230" fill="#D63E2F">mesmo sem internet</text>
 </svg>"""
 
@@ -315,7 +315,7 @@ H.append(f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><titl
   <p class="titulo">Brisa</p>
   <p class="sub">Calor seguro na escola: previsão com IA, sensores nas salas e<br>recomendações para proteger estudantes durante o calor extremo</p>
   <div class="rot">Integrantes</div><ul>{integrantes}</ul>
-  <div class="rot">Curso</div><ul><li>Graduação em Inteligência Artificial — FIAP ON (1º ano, Fase 3)</li></ul>
+  <div class="rot">Turma</div><ul><li>1TIAO · Graduação em Inteligência Artificial (FIAP ON) · 1º ano, Fase 3</li></ul>
  </div>
  <div>
   <div class="rot">Links para correção</div>
@@ -338,7 +338,7 @@ H.append(f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><titl
 <div><b>3 Resultados obtidos</b></div><div>3.1 Exposição ao calor nas escolas</div><div>3.2 Desempenho dos modelos</div>
 <div>3.3 Demonstração integrada</div><div>3.4 Testes e evidências</div>
 <div><b>4 Conclusões</b></div><div>4.1 Síntese</div><div>4.2 Limitações</div><div>4.3 Medição de impacto</div><div>4.4 Próximos passos</div>
-<div><b>Referências</b></div><div><b>Apêndice A</b>: como executar</div>
+<div><b>Referências</b></div><div><b>Apêndice A</b>: como executar</div><div><b>Apêndice B</b>: checklist dos requisitos da FIAP</div>
 </div>
 
 <h2>Resumo</h2>
@@ -665,6 +665,28 @@ python -m pytest -v                # testes automatizados</pre>
 e importadas pela opção 3 do menu.</p>
 <p><b>Vídeo demonstrativo:</b> {e(equipe['link_video'])}</p>
 <p><b>Repositório GitHub (privado, compartilhado com a conta fiap-tutoria):</b> {e(equipe['link_github'])}</p>
+
+<h1>Apêndice B — Checklist dos requisitos da FIAP</h1>
+<table><caption>Tabela 12 — Onde cada requisito do enunciado é atendido</caption>
+<thead><tr><th>Requisito do enunciado</th><th>Onde está</th></tr></thead><tbody>
+<tr><td>Problema real CitizenTech, público-alvo e justificativa baseada em informações</td><td>Seções 1.1 a 1.3 e 2.2 (fontes UNICEF, PLOS ONE, INPE, INMET)</td></tr>
+<tr><td>Programa funcional em Python com os conceitos de programação</td><td>Seção 2.11, Códigos 1 a 9; <code>src/brisa/</code>, <code>src/main.py</code>, <code>src/app.py</code></td></tr>
+<tr><td>Coleta, tratamento e análise de dados, com tabela, indicador ou gráfico</td><td>Seções 2.5, 2.7 e 3.1 (Tabelas 4 a 6, Figuras 2 a 6); notebook</td></tr>
+<tr><td>Dados reais ou base de demonstração identificada, com origem e limitações</td><td>Seção 2.5 (quadro de dados simulados) e <code>data/README.md</code></td></tr>
+<tr><td>Conceitos adicionais: estatística, classificação, regressão, banco de dados, sensores</td><td>Seções 2.7 a 2.10 e 3.2; Tabela 2 (integração entre disciplinas)</td></tr>
+<tr><td>Evidência de testes e limitações do protótipo</td><td>Seções 3.3, 3.4 e 4.2; <code>docs/evidencia_*.txt</code>, <code>docs/evidencia_wokwi_*</code></td></tr>
+<tr><td>Vídeo demonstrativo de até 5 minutos</td><td>4min17s, com legendas: link na capa e no Apêndice A</td></tr>
+<tr><td>Nomes completos dos integrantes e turma na primeira página</td><td>Capa</td></tr>
+<tr><td>Estrutura mínima: Introdução, Desenvolvimento, Resultados e Conclusões</td><td>Capítulos 1 a 4</td></tr>
+<tr><td>Problema, público, objetivo, funcionamento e justificativa das tecnologias</td><td>Seções 1.2 a 1.4, 2.3, 2.4 e 2.6 a 2.11</td></tr>
+<tr><td>Origem dos dados, tratamento, explicação dos códigos e evidências dos testes</td><td>Seções 2.5 a 2.10 e 3.4</td></tr>
+<tr><td>Imagens, gráficos, tabelas, diagramas e registros do protótipo</td><td>Figuras 1 a 11; Tabelas 1 a 11</td></tr>
+<tr><td>ODS relacionados e como medir o impacto</td><td>Seção 1.5 (Tabela 3) e Seção 4.3 (Tabela 9)</td></tr>
+<tr><td>Link do vídeo e do repositório GitHub privado (compartilhado com fiap-tutoria)</td><td>Capa e Apêndice A</td></tr>
+<tr><td>Códigos em texto legível, não em captura de tela</td><td>Todos os códigos do relatório estão em texto</td></tr>
+<tr><td>Estrutura do repositório conforme o template FIAP-PORTFOLIO-AI, com README e integrantes</td><td><code>1TIAO/GLOBAL-SOLUTION-1/README.md</code></td></tr>
+<tr><td>Bases simuladas e resultados esperados identificados como tais</td><td>Seções 2.5, 3.3 e 4.3; painel e vídeo</td></tr>
+</tbody></table>
 </body></html>
 """)
 

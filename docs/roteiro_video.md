@@ -1,6 +1,6 @@
 # 🎬 Vídeo demonstrativo: Brisa
 
-Vídeo pronto: **4min17s**, 1080p (`Brisa_GS2026-2_Video.mp4`). A narração tem uma única voz, gerada no ElevenLabs a partir do texto abaixo. As imagens são slides montados com os resultados reais, gravações do painel e do firmware rodando no simulador Wokwi.
+Vídeo pronto: **4min17s**, 1080p (`Brisa_GS2026-2_Video.mp4`), com legendas embutidas, título de capítulo em cada cena e barra de progresso. As legendas também estão em `docs/legendas_video.srt`, para enviar ao YouTube. A narração tem uma única voz, gerada no ElevenLabs a partir do texto abaixo. As imagens são slides montados com os resultados reais, gravações do painel e do firmware rodando no simulador Wokwi.
 
 O projeto **não concorre ao pódio**, por isso o vídeo não tem a frase "QUERO CONCORRER".
 
