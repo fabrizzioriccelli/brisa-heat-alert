@@ -111,7 +111,7 @@ O **Brisa** junta três camadas:
 
 ```bash
 # 1. Clonar e entrar na pasta da entrega
-git clone <URL-DO-REPOSITORIO-PRIVADO>
+git clone https://github.com/fabrizzioriccelli/FIAP-PORTFOLIO-AI.git
 cd FIAP-PORTFOLIO-AI/1TIAO/GLOBAL-SOLUTION-1
 
 # 2. Ambiente virtual e dependências
