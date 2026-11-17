@@ -1,6 +1,6 @@
 """Painel web do Brisa (Streamlit).
 
-Executar a partir da pasta GLOBAL-SOLUTION-1:
+Executar a partir da raiz do projeto:
     streamlit run src/app.py
 """
 import sys

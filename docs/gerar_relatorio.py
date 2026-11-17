@@ -1,6 +1,6 @@
 """Gera o relatório de entrega (HTML + PDF) a partir dos resultados reais do projeto.
 
-Uso (na pasta GLOBAL-SOLUTION-1, depois de `python src/main.py tudo`):
+Uso (na raiz do projeto, depois de `python src/main.py tudo`):
     python docs/gerar_relatorio.py
 
 Os nomes do grupo, a turma e os links ficam em docs/equipe.json: edite e rode de novo.
@@ -341,7 +341,7 @@ H.append(f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><titl
  <div class="links">
   <p><b>Vídeo (YouTube, não listado):</b> {e(equipe['link_video'])}</p>
   <p><b>Repositório GitHub (privado, compartilhado com fiap-tutoria):</b> {e(equipe['link_github'])}</p>
-  <p><b>Pasta da entrega:</b> FIAP-PORTFOLIO-AI/1TIAO/GLOBAL-SOLUTION-1</p>
+  <p><b>Projeto na raiz do repositório:</b> código, dados, notebook, modelos e documentação</p>
  </div>
 </section>
 
@@ -669,7 +669,7 @@ São <b>resultados esperados</b>, ainda não medidos.</p>
 <div class="refs">{''.join(f'<p>{r}</p>' for r in REFS)}</div>
 
 <h1>Apêndice A — Como executar</h1>
-<p>Repositório: {e(equipe['link_github'])} (pasta <code>1TIAO/GLOBAL-SOLUTION-1</code>). Requisitos: Python 3.10 ou superior.</p>
+<p>Repositório: {e(equipe['link_github'])} (projeto na raiz do repositório). Requisitos: Python 3.10 ou superior.</p>
 <pre>python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
@@ -702,7 +702,7 @@ e importadas pela opção 3 do menu.</p>
 <tr><td>ODS relacionados e como medir o impacto</td><td>Seção 1.5 (Tabela 3) e Seção 4.3 (Tabela 9)</td></tr>
 <tr><td>Link do vídeo e do repositório GitHub privado (compartilhado com fiap-tutoria)</td><td>Capa e Apêndice A</td></tr>
 <tr><td>Códigos em texto legível, não em captura de tela</td><td>Todos os códigos do relatório estão em texto</td></tr>
-<tr><td>Estrutura do repositório conforme o template FIAP-PORTFOLIO-AI, com README e integrantes</td><td><code>1TIAO/GLOBAL-SOLUTION-1/README.md</code></td></tr>
+<tr><td>Estrutura de pastas do template FIAP (data, docs, notebooks, src) com README e integrantes</td><td><code>README.md</code> na raiz do repositório</td></tr>
 <tr><td>Bases simuladas e resultados esperados identificados como tais</td><td>Seções 2.5, 3.3 e 4.3; painel e vídeo</td></tr>
 </tbody></table>
 </body></html>

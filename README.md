@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://www.fiap.com.br/">
-  <img src="../../assets/logo-fiap.png" 
+  <img src="assets/logo-fiap.png" 
        alt="FIAP - Faculdade de Informática e Administração Paulista" 
        width="40%">
 </a>
@@ -85,7 +85,8 @@ Marca própria: três linhas de vento sobre um gradiente de calor, porque a bris
 ## 📁 Estrutura de pastas 
 
 ```
-GLOBAL-SOLUTION-1/
+brisa-gs-2026-2/
+├── assets/      logo da FIAP usado no README
 ├── data/        dados reais (raw/), tratados (processed/), simulados (simulated/) e banco brisa.db
 ├── docs/        relatório PDF, roteiro e legendas do vídeo, identidade visual (brand/),
 │                figuras (img/) e evidências de execução e testes
@@ -138,9 +139,9 @@ GLOBAL-SOLUTION-1/
 **Pré-requisitos:** Python 3.10 ou superior (testado no 3.15) e Git. Para o firmware, o simulador online [Wokwi](https://wokwi.com) ou uma placa ESP32 com DHT22.
 
 ```bash
-# 1. Clonar e entrar na pasta da entrega
-git clone https://github.com/fabrizzioriccelli/FIAP-PORTFOLIO-AI.git
-cd FIAP-PORTFOLIO-AI/1TIAO/GLOBAL-SOLUTION-1
+# 1. Clonar e entrar na pasta do projeto
+git clone https://github.com/fabrizzioriccelli/brisa-gs-2026-2.git
+cd brisa-gs-2026-2
 
 # 2. Ambiente virtual e dependências
 python -m venv .venv

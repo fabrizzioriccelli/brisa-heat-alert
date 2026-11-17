@@ -1,7 +1,7 @@
 """Configurações centrais do Brisa (caminhos, cidades e limiares)."""
 from pathlib import Path
 
-# Raiz da entrega (pasta GLOBAL-SOLUTION-1)
+# Raiz do projeto
 RAIZ = Path(__file__).resolve().parents[2]
 
 DIR_DADOS = RAIZ / "data"
