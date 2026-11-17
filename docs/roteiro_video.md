@@ -1,8 +1,10 @@
 # 🎬 Vídeo demonstrativo: Brisa
 
-Vídeo final: **4min24s**, 1080p, 30 fps.
+Vídeo final: **4min24s**, 1080p, 60 fps, com motion design.
 - **Narração:** uma única voz, gerada no ElevenLabs a partir do texto abaixo.
-- **Cenas animadas:** HTML/CSS renderizado quadro a quadro, sincronizado com cada palavra da narração. A sincronia vem dos timestamps do reconhecimento de fala (Vosk).
+- **Cenas animadas:** renderizadas quadro a quadro e sincronizadas com cada palavra da narração. A sincronia vem dos timestamps do reconhecimento de fala (Vosk).
+- **Movimento:** curvas de easing, revelação de títulos por máscara, cortina de transição com o gradiente da marca e fundo com linhas de vento em movimento contínuo.
+- **Demonstrações:** câmera virtual que desliza e dá zoom sobre capturas reais em alta resolução do painel e do Wokwi, destacando cada número no momento em que é dito.
 - **Acabamento:** legendas embutidas, título de capítulo, barra de progresso, abertura e encerramento com a marca.
 - **Legendas avulsas:** em `docs/legendas_video.srt`, para enviar ao YouTube.
 
