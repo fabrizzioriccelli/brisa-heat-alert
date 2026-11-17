@@ -1,65 +1,82 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Brisa — Relatório GS 2026.2</title>
 <style>
-@page { size: A4; margin: 22mm 20mm 20mm 22mm;
-  @bottom-right { content: counter(page); font: 9pt Helvetica, Arial, sans-serif; color: #888; }
-  @bottom-left { content: "Brisa · FIAP Global Solution 2026.2"; font: 8pt Helvetica, Arial, sans-serif; color: #aaa; } }
-@page :first { @bottom-right { content: none; } @bottom-left { content: none; } }
+@page { size: A4; margin: 24mm 20mm 20mm 22mm;
+  @top-left { content: "brisa"; font: 700 10pt 'Avenir Next', Helvetica, sans-serif; color: #D9622B; }
+  @top-right { content: "Relatório · Global Solution 2026.2"; font: 500 8pt 'Avenir Next', Helvetica, sans-serif; color: #9AA0AA; }
+  @bottom-right { content: counter(page); font: 600 9pt 'Avenir Next', Helvetica, sans-serif; color: #0F1B2D; }
+  @bottom-left { content: "FIAP · Graduação em Inteligência Artificial · CitizenTech"; font: 500 7.5pt 'Avenir Next', Helvetica, sans-serif; color: #B0B5BD; } }
+@page :first { margin: 0; @top-left{content:none} @top-right{content:none} @bottom-right{content:none} @bottom-left{content:none} }
 * { box-sizing: border-box; }
-body { font: 10.5pt/1.5 Georgia, 'Times New Roman', serif; color: #1d1d1f; margin: 0; }
-h1, h2, h3, h4, caption, figcaption, th, .capa, .kpi, .box { font-family: Helvetica, Arial, sans-serif; }
-h1 { font-size: 19pt; color: #7A1F3D; margin: 0 0 10pt; page-break-before: always; border-bottom: 2px solid #F08A24; padding-bottom: 4pt; }
-h2 { font-size: 13pt; color: #2E7DA6; margin: 16pt 0 6pt; page-break-after: avoid; }
-h3 { font-size: 11pt; margin: 12pt 0 4pt; page-break-after: avoid; }
+body { font: 10.4pt/1.55 Charter, 'Iowan Old Style', Georgia, serif; color: #1D2433; margin: 0; }
+h1, h2, h3, caption, figcaption, th, .kpi, .box, .toc, .capa { font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif; }
+h1 { font-size: 24pt; color: #0F1B2D; margin: 0 0 14pt; page-break-before: always; font-weight: 700; letter-spacing: -.3pt; }
+h1::after { content: ""; display: block; width: 70mm; height: 4px; margin-top: 8pt; border-radius: 2px;
+  background: linear-gradient(90deg, #3BB3C3, #F5A623, #D63E2F, #7A1F3D); }
+h2 { font-size: 13.5pt; color: #D9622B; margin: 18pt 0 6pt; page-break-after: avoid; font-weight: 700; }
+h3 { font-size: 11pt; margin: 12pt 0 4pt; color: #0F1B2D; page-break-after: avoid; }
 p { margin: 0 0 7pt; text-align: justify; hyphens: auto; }
 ul, ol { margin: 0 0 8pt 16pt; padding: 0; } li { margin-bottom: 2pt; }
-table { border-collapse: collapse; width: 100%; margin: 6pt 0 12pt; font: 8.6pt/1.35 Helvetica, Arial, sans-serif; page-break-inside: avoid; }
-caption { caption-side: top; text-align: left; font-weight: bold; font-size: 8.8pt; color: #444; padding-bottom: 4pt; }
-th { background: #2E7DA6; color: #fff; text-align: left; padding: 4pt 5pt; font-weight: 600; }
-td { border-bottom: 1px solid #e3e3e3; padding: 3pt 5pt; vertical-align: top; }
-tr:nth-child(even) td { background: #f7f9fb; } tr.total td { font-weight: bold; background: #FFF4E6; }
-figure { margin: 8pt 0 12pt; page-break-inside: avoid; }
-figure.img { text-align: center; } figure.img img { max-width: 100%; border: 1px solid #eee; }
-figcaption { font-size: 8.6pt; color: #555; margin-top: 3pt; }
-figure.code figcaption { margin: 0 0 3pt; font-weight: bold; }
-pre { background: #f6f8fa; border: 1px solid #e1e4e8; border-left: 3px solid #F08A24; padding: 7pt 9pt;
-      font: 7.6pt/1.4 Menlo, Consolas, monospace; white-space: pre-wrap; word-break: break-word; margin: 0; }
-code { font-family: Menlo, Consolas, monospace; font-size: 8.5pt; }
-td code { font-size: 7.6pt; }
-.capa { height: 250mm; display: flex; flex-direction: column; justify-content: space-between; }
-.capa .topo { font-size: 10pt; color: #555; letter-spacing: .5px; }
-.capa .titulo { font-size: 40pt; font-weight: 800; color: #7A1F3D; margin: 0; }
-.capa .sub { font-size: 14pt; color: #2E7DA6; margin: 4pt 0 24pt; }
-.capa .faixa { height: 10px; background: linear-gradient(90deg,#2E9E6B,#E8C547,#F08A24,#D63E2F,#7A1F3D); border-radius: 5px; margin: 14pt 0; }
-.capa ul { list-style: none; margin: 0; font-size: 11pt; } .capa li { margin: 3pt 0; }
-.capa .rot { font-size: 9pt; text-transform: uppercase; color: #888; margin-top: 14pt; letter-spacing: .6px; }
-.capa .links { font-size: 9.5pt; word-break: break-all; }
-.kpis { display: flex; gap: 8pt; margin: 8pt 0 12pt; }
-.kpi { flex: 1; border: 1px solid #e3e3e3; border-top: 4px solid #F08A24; border-radius: 6px; padding: 7pt; }
-.kpi b { display: block; font-size: 16pt; color: #7A1F3D; } .kpi span { font-size: 8pt; color: #555; }
-.box { border-radius: 6px; padding: 8pt 10pt; margin: 8pt 0 12pt; font-size: 9pt; line-height: 1.45; page-break-inside: avoid; }
-.box.sim { background: #FFF4E6; border: 1px solid #F7C38A; } .box.info { background: #E8F4FA; border: 1px solid #A9D3E8; }
-.box.ok { background: #EEF7F0; border: 1px solid #A8D8B9; }
-.toc { columns: 2; font-family: Helvetica, Arial, sans-serif; font-size: 9.5pt; } .toc div { margin: 2pt 0; }
+b, strong { color: #0F1B2D; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 13pt; font: 8.6pt/1.4 'Avenir Next', Helvetica, Arial, sans-serif; page-break-inside: avoid; }
+caption { caption-side: top; text-align: left; font-weight: 700; font-size: 8.8pt; color: #0F1B2D; padding-bottom: 5pt; }
+th { background: #0F1B2D; color: #FFF8F0; text-align: left; padding: 5pt 6pt; font-weight: 600; }
+th:first-child { border-top-left-radius: 4px; } th:last-child { border-top-right-radius: 4px; }
+td { border-bottom: 1px solid #ECE6DE; padding: 4pt 6pt; vertical-align: top; }
+tr:nth-child(even) td { background: #FBF7F1; } tr.total td { font-weight: 700; background: #FFF0DD; }
+figure { margin: 9pt 0 13pt; page-break-inside: avoid; }
+figure.img { text-align: center; } figure.img img { max-width: 100%; border-radius: 6px; border: 1px solid #EEE7DE; }
+figcaption { font-size: 8.4pt; color: #6B7280; margin-top: 4pt; }
+figure.code figcaption { margin: 0 0 3pt; font-weight: 700; color: #0F1B2D; }
+pre { background: #F7F4EF; border: 1px solid #ECE6DE; border-left: 3px solid #D9622B; border-radius: 4px; padding: 8pt 10pt;
+      font: 7.5pt/1.42 Menlo, Consolas, monospace; white-space: pre-wrap; word-break: break-word; margin: 0; color: #1D2433; }
+code { font-family: Menlo, Consolas, monospace; font-size: 8.3pt; color: #9A3A1E; }
+td code { font-size: 7.5pt; }
+.capa { width: 210mm; height: 297mm; background: #0F1B2D; color: #FFF8F0; position: relative; overflow: hidden; padding: 26mm 22mm 20mm; }
+.capa::before { content: ""; position: absolute; right: -60mm; top: -60mm; width: 190mm; height: 190mm; border-radius: 50%;
+  background: radial-gradient(circle, rgba(240,138,36,.35), rgba(240,138,36,0) 65%); }
+.capa::after { content: ""; position: absolute; left: -50mm; bottom: -70mm; width: 170mm; height: 170mm; border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,179,195,.22), rgba(59,179,195,0) 65%); }
+.capa * { position: relative; z-index: 1; color: #FFF8F0; }
+.capa .marca { display: flex; align-items: center; gap: 12pt; } .capa .marca img { height: 46pt; }
+.capa .marca span { font-size: 26pt; font-weight: 700; letter-spacing: -.5pt; }
+.capa .topo { font-size: 8.5pt; letter-spacing: 1.6pt; text-transform: uppercase; color: #F5A623; margin-top: 30mm; font-weight: 600; }
+.capa .titulo { font-size: 40pt; line-height: 1.04; font-weight: 700; letter-spacing: -1pt; margin: 8pt 0 12pt; }
+.capa .titulo span { background: linear-gradient(90deg, #F5A623, #D63E2F); -webkit-background-clip: text; color: transparent; }
+.capa .sub { font-size: 12.5pt; line-height: 1.5; color: rgba(255,248,240,.8); max-width: 140mm; text-align: left; }
+.capa .faixa { height: 4px; width: 60mm; border-radius: 2px; margin: 14mm 0 8mm; background: linear-gradient(90deg,#3BB3C3,#F5A623,#D63E2F,#7A1F3D); }
+.capa .grade { display: flex; gap: 14mm; }
+.capa .rot { font-size: 7.5pt; text-transform: uppercase; color: rgba(255,248,240,.55); letter-spacing: 1.4pt; margin: 0 0 5pt; font-weight: 600; }
+.capa ul { list-style: none; margin: 0; font-size: 10.5pt; } .capa li { margin: 2.5pt 0; }
+.capa li small { color: rgba(255,248,240,.55); font-size: 8.5pt; margin-left: 4pt; }
+.capa .links { position: absolute; left: 22mm; right: 22mm; bottom: 20mm; font-size: 8.6pt; word-break: break-all;
+  border-top: 1px solid rgba(255,248,240,.15); padding-top: 8pt; }
+.capa .links p { text-align: left; margin: 0 0 3pt; color: rgba(255,248,240,.8); } .capa .links b { color: #F5A623; }
+.kpis { display: flex; gap: 8pt; margin: 12pt 0 14pt; page-break-inside: avoid; }
+.kpi { flex: 1; background: #0F1B2D; border-radius: 8px; padding: 9pt 10pt; }
+.kpi b { display: block; font-size: 17pt; color: #F5A623; } .kpi span { font-size: 7.8pt; color: rgba(255,248,240,.82); line-height: 1.3; display: block; }
+.box { border-radius: 8px; padding: 9pt 11pt; margin: 9pt 0 13pt; font-size: 9pt; line-height: 1.5; page-break-inside: avoid; }
+.box.sim { background: #FFF3E3; border-left: 4px solid #F5A623; } .box.info { background: #EAF6F8; border-left: 4px solid #3BB3C3; }
+.box.ok { background: #EDF7F1; border-left: 4px solid #2E9E6B; }
+.toc { columns: 2; font-size: 10.5pt; column-gap: 12mm; } .toc div { margin: 2.5pt 0; padding-bottom: 2pt; border-bottom: 1px dotted #E2DBD2; }
 .duas { display: flex; gap: 10pt; } .duas > * { flex: 1; }
 .refs p { text-align: left; padding-left: 14pt; text-indent: -14pt; font-size: 9pt; }
 .ev { font: 7pt/1.35 Menlo, monospace; }
 </style></head><body>
 <section class="capa">
- <div>
-  <div class="topo">FIAP · GRADUAÇÃO EM INTELIGÊNCIA ARTIFICIAL · GLOBAL SOLUTION 2026.2 · CITIZENTECH</div>
-  <div class="faixa"></div>
-  <p class="titulo">Brisa</p>
-  <p class="sub">Calor seguro na escola: previsão com IA, sensores nas salas e<br>recomendações para proteger estudantes durante o calor extremo</p>
-  <div class="rot">Integrantes</div><ul><li>Bruna Collavite — RM 576285</li><li>Fabio Guntovitch — RM 575582</li><li>Fabrizzio Riccelli — RM 576083</li><li>Gabriel Tamais — RM 574503</li><li>Natasha Zonta — RM 574230</li></ul>
-  <div class="rot">Turma</div><ul><li>1TIAO · Graduação em Inteligência Artificial (FIAP ON) · 1º ano, Fase 3</li></ul>
+ <div class="marca"><img src="brand/brisa-mark.svg"><span>brisa</span></div>
+ <div class="topo">FIAP · Global Solution 2026.2 · CitizenTech</div>
+ <p class="titulo">Calor seguro<br><span>na escola.</span></p>
+ <p class="sub">Previsão do pico de calor com Inteligência Artificial, sensores ESP32 nas salas e recomendações práticas para a coordenação escolar.</p>
+ <div class="faixa"></div>
+ <div class="grade">
+  <div><div class="rot">Integrantes</div><ul><li>Bruna Collavite<small>RM 576285</small></li><li>Fabio Guntovitch<small>RM 575582</small></li><li>Fabrizzio Riccelli<small>RM 576083</small></li><li>Gabriel Tamais<small>RM 574503</small></li><li>Natasha Zonta<small>RM 574230</small></li></ul></div>
+  <div><div class="rot">Turma</div><ul><li>1TIAO</li><li><small style="margin:0">Graduação em Inteligência Artificial<br>FIAP ON · 1º ano · Fase 3</small></li></ul>
+   <div class="rot" style="margin-top:12pt">Entrega</div><ul><li>Relatório técnico</li><li><small style="margin:0">São Paulo · novembro de 2026</small></li></ul></div>
  </div>
- <div>
-  <div class="rot">Links para correção</div>
-  <ul class="links"><li><b>Vídeo (YouTube, não listado):</b> [COLAR AQUI O LINK DO YOUTUBE — NÃO LISTADO]</li>
-  <li><b>Repositório GitHub (privado, compartilhado com fiap-tutoria):</b> https://github.com/fabrizzioriccelli/FIAP-PORTFOLIO-AI</li>
-  <li><b>Pasta da entrega no repositório:</b> FIAP-PORTFOLIO-AI/1TIAO/GLOBAL-SOLUTION-1</li></ul>
-  <div class="faixa"></div>
-  <div class="topo">São Paulo · novembro de 2026</div>
+ <div class="links">
+  <p><b>Vídeo (YouTube, não listado):</b> [COLAR AQUI O LINK DO YOUTUBE — NÃO LISTADO]</p>
+  <p><b>Repositório GitHub (privado, compartilhado com fiap-tutoria):</b> https://github.com/fabrizzioriccelli/FIAP-PORTFOLIO-AI</p>
+  <p><b>Pasta da entrega:</b> FIAP-PORTFOLIO-AI/1TIAO/GLOBAL-SOLUTION-1</p>
  </div>
 </section>
 
@@ -77,7 +94,7 @@ td code { font-size: 7.6pt; }
 <div><b>Referências</b></div><div><b>Apêndice A</b>: como executar</div><div><b>Apêndice B</b>: checklist dos requisitos da FIAP</div>
 </div>
 
-<h2>Resumo</h2>
+<h1>Resumo</h1>
 <p>O calor extremo deixou de ser um desconforto ocasional e passou a interromper a escolarização: em 2024, ondas de calor foram o evento climático
 que mais afetou estudantes no mundo, com cerca de 171 milhões atingidos (UNICEF, 2025). Este trabalho apresenta o <b>Brisa</b>, uma prova de conceito
 que ajuda a coordenação de escolas públicas a <b>antecipar</b> e <b>gerenciar</b> o calor durante as aulas. Com dados meteorológicos <b>reais</b>
@@ -638,7 +655,7 @@ e importadas pela opção 3 do menu.</p>
 <tr><td>Dados reais ou base de demonstração identificada, com origem e limitações</td><td>Seção 2.5 (quadro de dados simulados) e <code>data/README.md</code></td></tr>
 <tr><td>Conceitos adicionais: estatística, classificação, regressão, banco de dados, sensores</td><td>Seções 2.7 a 2.10 e 3.2; Tabela 2 (integração entre disciplinas)</td></tr>
 <tr><td>Evidência de testes e limitações do protótipo</td><td>Seções 3.3, 3.4 e 4.2; <code>docs/evidencia_*.txt</code>, <code>docs/evidencia_wokwi_*</code></td></tr>
-<tr><td>Vídeo demonstrativo de até 5 minutos</td><td>4min17s, com legendas: link na capa e no Apêndice A</td></tr>
+<tr><td>Vídeo demonstrativo de até 5 minutos</td><td>4min24s, animado e com legendas: link na capa e no Apêndice A</td></tr>
 <tr><td>Nomes completos dos integrantes e turma na primeira página</td><td>Capa</td></tr>
 <tr><td>Estrutura mínima: Introdução, Desenvolvimento, Resultados e Conclusões</td><td>Capítulos 1 a 4</td></tr>
 <tr><td>Problema, público, objetivo, funcionamento e justificativa das tecnologias</td><td>Seções 1.2 a 1.4, 2.3, 2.4 e 2.6 a 2.11</td></tr>

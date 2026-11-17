@@ -16,7 +16,7 @@
 Graduação em Inteligência Artificial (FIAP ON) · 1TIAO · Fase 3
 
 <p align="center">
-  <img src="docs/img/app_boletim.png" alt="Painel do Brisa: boletim das 9h" width="88%">
+  <img src="docs/img/banner.png" alt="Brisa — calor seguro na escola" width="100%">
 </p>
 
 | 📄 Relatório | 🎬 Vídeo | 📓 Notebook | 🖥️ Painel | 🔌 ESP32 |
@@ -76,6 +76,9 @@ Dados meteorológicos **reais**, horários, de 2020 a 2025, em 5 capitais (263.0
 |:---:|:---:|:---:|
 | <img src="docs/img/app_boletim.png" width="300"> | <img src="docs/img/app_salas.png" width="300"> | <img src="docs/img/wokwi_perigo.png" width="300"> |
 
+### Identidade visual
+Marca própria: três linhas de vento sobre um gradiente de calor, porque a brisa alivia o calor. Ela usa a mesma paleta e a tipografia Avenir Next no painel, no relatório e no vídeo. Arquivos e cores estão em [`docs/brand/`](docs/brand/).
+
 ### ODS relacionados
 **ODS 3** (Saúde e bem-estar), **ODS 4** (Educação de qualidade), **ODS 11** (Cidades e comunidades sustentáveis) e **ODS 13** (Ação contra a mudança global do clima). O relatório traz as metas de cada ODS e os indicadores propostos para medir o impacto.
 
@@ -84,7 +87,8 @@ Dados meteorológicos **reais**, horários, de 2020 a 2025, em 5 capitais (263.0
 ```
 GLOBAL-SOLUTION-1/
 ├── data/        dados reais (raw/), tratados (processed/), simulados (simulated/) e banco brisa.db
-├── docs/        relatório PDF, roteiro do vídeo, figuras (img/) e evidências de execução e testes
+├── docs/        relatório PDF, roteiro e legendas do vídeo, identidade visual (brand/),
+│                figuras (img/) e evidências de execução e testes
 ├── models/      modelos treinados (.joblib) e métricas (metricas.json)
 ├── notebooks/   análise exploratória, estatística e modelagem (já executado)
 ├── src/
@@ -104,7 +108,7 @@ GLOBAL-SOLUTION-1/
 
 ### 🔗 Links do Projeto
 
-* **[Vídeo demonstrativo no YouTube (não listado)](http://url-aqui)**: 4min17s, com legendas.
+* **[Vídeo demonstrativo no YouTube (não listado)](http://url-aqui)**: 4min24s, animado e com legendas ([`docs/legendas_video.srt`](docs/legendas_video.srt)).
 * **[Relatório em PDF](docs/Brisa_GS2026-2_Relatorio.pdf)**: documento de entrega, com Introdução, Desenvolvimento, Resultados, Conclusões e a checklist dos requisitos da FIAP.
 * **[Firmware e circuito do ESP32](src/esp32/)**: executado no simulador Wokwi, com a saída registrada em [`docs/evidencia_wokwi_serial.jsonl`](docs/evidencia_wokwi_serial.jsonl).
 

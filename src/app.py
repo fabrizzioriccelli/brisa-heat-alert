@@ -15,7 +15,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from brisa import alertas, banco, config, dados, modelo, servicos  # noqa: E402
 from brisa.indice_calor import classificar, indice_de_calor  # noqa: E402
 
-st.set_page_config(page_title="Brisa — calor seguro na escola", page_icon="🌬️", layout="wide")
+_LOGO = __import__('base64').b64encode((Path(__file__).resolve().parents[1] / 'docs/brand/brisa-mark.svg').read_bytes()).decode()
+st.set_page_config(page_title="Brisa — calor seguro na escola", page_icon=str(Path(__file__).resolve().parents[1] / 'docs/brand/brisa-mark.svg'), layout="wide")
 
 st.markdown("""
 <style>
@@ -26,8 +27,12 @@ st.markdown("""
 .brisa-card {background:#fff}
 .block-container {padding-top:2.2rem !important}
 .brisa-head {display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  padding:18px 22px;border-radius:16px;background:linear-gradient(120deg,#7A1F3D,#D63E2F 55%,#F08A24);color:#fff;margin-bottom:6px}
-.brisa-head h1 {margin:0;font-size:2.1rem;color:#fff;padding:0}
+  padding:20px 26px;border-radius:18px;color:#FFF8F0;margin-bottom:8px;
+  background:radial-gradient(600px 220px at 95% -20%,rgba(240,138,36,.45),transparent 70%),radial-gradient(500px 200px at -5% 120%,rgba(59,179,195,.3),transparent 70%),#0F1B2D}
+.brisa-head h1 {margin:0;font-size:2.1rem;color:#FFF8F0;padding:0;display:flex;align-items:center;gap:12px;letter-spacing:-.5px}
+.brisa-head h1 img {height:42px}
+html, body, [class*="css"], .stMarkdown, .stTabs {font-family:'Avenir Next','Avenir','Helvetica Neue',Arial,sans-serif !important}
+.brisa-card {border-left:4px solid #D9622B !important}
 .brisa-head p {margin:2px 0 0;opacity:.92;font-size:.98rem}
 .brisa-chip {display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
   border-radius:999px;padding:3px 10px;margin:3px 0 3px 6px;font-size:.78rem;white-space:nowrap}
@@ -64,7 +69,7 @@ except FileNotFoundError as e:
     st.error(f"{e}\n\nExecute antes: `python src/main.py tudo`")
     st.stop()
 
-st.markdown("""<div class="brisa-head"><div><h1>🌬️ Brisa</h1>
+st.markdown(f"""<div class="brisa-head"><div><h1><img src="data:image/svg+xml;base64,{_LOGO}">brisa</h1>
 <p>Calor seguro na escola: previsão com IA às 09h, sensores nas salas e recomendações para a coordenação.</p></div>
 <div><span class="brisa-chip">Dados reais · Open-Meteo/ERA5</span><span class="brisa-chip">IA · Random Forest</span>
 <span class="brisa-chip">Sensores · ESP32 + DHT22</span></div></div>""", unsafe_allow_html=True)
