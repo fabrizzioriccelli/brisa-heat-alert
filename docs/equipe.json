@@ -2,11 +2,26 @@
   "grupo": "[NOME DO GRUPO]",
   "turma": "[TURMA — ex.: 1TIAOX]",
   "integrantes": [
-    {"nome": "[Nome completo do integrante 1]", "rm": "RM[00000]"},
-    {"nome": "[Nome completo do integrante 2]", "rm": "RM[00000]"},
-    {"nome": "[Nome completo do integrante 3]", "rm": "RM[00000]"},
-    {"nome": "[Nome completo do integrante 4]", "rm": "RM[00000]"},
-    {"nome": "[Nome completo do integrante 5]", "rm": "RM[00000]"}
+    {
+      "nome": "Bruna Collavite",
+      "rm": "RM 576285"
+    },
+    {
+      "nome": "Fabio Guntovitch",
+      "rm": "RM 575582"
+    },
+    {
+      "nome": "Fabrizzio Riccelli",
+      "rm": "RM 576083"
+    },
+    {
+      "nome": "Gabriel Tamais",
+      "rm": "RM 574503"
+    },
+    {
+      "nome": "Natasha Zonta",
+      "rm": "RM 574230"
+    }
   ],
   "link_video": "[COLAR AQUI O LINK DO YOUTUBE — NÃO LISTADO]",
   "link_github": "[COLAR AQUI O LINK DO REPOSITÓRIO PRIVADO — compartilhado com fiap-tutoria]",

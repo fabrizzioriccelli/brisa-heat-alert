@@ -19,11 +19,11 @@
 **[NOME DO GRUPO]**
 
 ## 👨‍🎓 Integrantes: 
-- <a href="Link do perfil no LinkedIn ou GitHub">[Nome completo do integrante 1] — RM[00000]</a>
-- <a href="Link do perfil no LinkedIn ou GitHub">[Nome completo do integrante 2] — RM[00000]</a>
-- <a href="Link do perfil no LinkedIn ou GitHub">[Nome completo do integrante 3] — RM[00000]</a> 
-- <a href="Link do perfil no LinkedIn ou GitHub">[Nome completo do integrante 4] — RM[00000]</a> 
-- <a href="Link do perfil no LinkedIn ou GitHub">[Nome completo do integrante 5] — RM[00000]</a>
+- <a href="https://github.com/brunacollavite">Bruna Collavite</a> — RM 576285
+- <a href="https://github.com/Guntooo">Fabio Guntovitch</a> — RM 575582
+- <a href="https://github.com/fabrizzioriccelli">Fabrizzio Riccelli</a> — RM 576083
+- <a href="https://github.com/GabrielTamaisFischer">Gabriel Tamais</a> — RM 574503
+- <a href="https://github.com/natashazont">Natasha Zonta</a> — RM 574230
 
 ## 👩‍🏫 Professores:
 
