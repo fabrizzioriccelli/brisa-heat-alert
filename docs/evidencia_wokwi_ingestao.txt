@@ -1,0 +1,14 @@
+Ingestão das leituras REAIS do firmware rodando no Wokwi (17/11/2026), num banco temporário:
+{"recebidas": 11, "gravadas": 11, "duplicadas": 0, "rejeitadas": 0, "alertas": 1, "erros": []}
+Comparação do índice calculado no ESP32 com o calculado em Python:
+  2026-11-17T14:12:13  34.0 °C 62.0%  ESP32 ic= 43.0 (Perigo         ) | Python ic=43.03
+  2026-11-17T14:12:15  26.0 °C 50.0%  ESP32 ic= 26.0 (Normal         ) | Python ic=25.96
+  2026-11-17T14:12:17  26.0 °C 50.0%  ESP32 ic= 26.0 (Normal         ) | Python ic=25.96
+  2026-11-17T14:12:19  29.0 °C 50.0%  ESP32 ic= 29.7 (Cautela        ) | Python ic=29.66
+  2026-11-17T14:12:21  29.0 °C 50.0%  ESP32 ic= 29.7 (Cautela        ) | Python ic=29.66
+  2026-11-17T14:12:23  29.0 °C 50.0%  ESP32 ic= 29.7 (Cautela        ) | Python ic=29.66
+  2026-11-17T14:12:25  32.0 °C 55.0%  ESP32 ic= 35.6 (Cautela extrema) | Python ic=35.64
+  2026-11-17T14:12:27  32.0 °C 55.0%  ESP32 ic= 35.6 (Cautela extrema) | Python ic=35.64
+  2026-11-17T14:12:29  32.0 °C 55.0%  ESP32 ic= 35.6 (Cautela extrema) | Python ic=35.64
+  2026-11-17T14:12:31  36.0 °C 60.0%  ESP32 ic= 48.1 (Perigo         ) | Python ic=48.14
+  2026-11-17T14:12:33  36.0 °C 60.0%  ESP32 ic= 48.1 (Perigo         ) | Python ic=48.14

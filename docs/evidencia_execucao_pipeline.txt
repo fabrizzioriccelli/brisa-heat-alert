@@ -72,4 +72,4 @@ Boletins das 09h (previsão x observado):
   2025-02-20: previsto 37.2 °C (Cautela extrema) | observado 37.5 °C (Cautela extrema)
   2025-02-21: previsto 36.6 °C (Cautela extrema + aviso de Perigo) | observado 35.2 °C (Cautela extrema)
 
-Concluído em 31.3 s
+Concluído em 26.7 s

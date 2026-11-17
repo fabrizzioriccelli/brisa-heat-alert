@@ -50,9 +50,8 @@ td code { font-size: 7.6pt; }
   <div class="faixa"></div>
   <p class="titulo">Brisa</p>
   <p class="sub">Calor seguro na escola: previsão com IA, sensores nas salas e<br>recomendações para proteger estudantes durante o calor extremo</p>
-  <div class="rot">Grupo</div><ul><li><b>[NOME DO GRUPO]</b></li></ul>
   <div class="rot">Integrantes</div><ul><li>Bruna Collavite — RM 576285</li><li>Fabio Guntovitch — RM 575582</li><li>Fabrizzio Riccelli — RM 576083</li><li>Gabriel Tamais — RM 574503</li><li>Natasha Zonta — RM 574230</li></ul>
-  <div class="rot">Turma</div><ul><li>[TURMA — ex.: 1TIAOX]</li></ul>
+  <div class="rot">Curso</div><ul><li>Graduação em Inteligência Artificial — FIAP ON (1º ano, Fase 3)</li></ul>
  </div>
  <div>
   <div class="rot">Links para correção</div>
@@ -92,7 +91,7 @@ se relaciona aos ODS 3, 4, 11 e 13 e propõe indicadores para medir seu impacto 
  <div class="kpi"><b>61%</b><span>das horas de aula em Teresina com índice ≥ 32,2 °C</span></div>
  <div class="kpi"><b>1,33 °C</b><span>erro médio do pico previsto às 09h (teste 2024-25)</span></div>
  <div class="kpi"><b>83,6%</b><span>acurácia da faixa de risco prevista</span></div>
- <div class="kpi"><b>30/30</b><span>testes automatizados aprovados</span></div>
+ <div class="kpi"><b>32/32</b><span>testes automatizados aprovados</span></div>
 </div>
 <p><b>Palavras-chave:</b> calor extremo; escolas; índice de calor; Random Forest; ESP32; CitizenTech.</p>
 
@@ -463,9 +462,12 @@ situação piora e repete a mesma faixa no máximo a cada 60 minutos, no mesmo r
     if nivel(categoria) &gt; nivel(ultimo[&quot;categoria&quot;]):
         return True
     return momento - ultimo[&quot;momento&quot;] &gt;= INTERVALO_REPETICAO</code></pre></figure>
-<div class="box info"><b>Situação do hardware:</b> o firmware e o circuito (<code>diagram.json</code>) foram escritos para o simulador Wokwi. A fórmula
-embarcada foi compilada e testada automaticamente contra a versão Python em 221 combinações de temperatura e umidade (diferença &lt; 0,05 °C). A execução
-na placa física ou no Wokwi deve ser registrada pela equipe no vídeo. Até lá, ela é um <b>resultado esperado</b>.</div>
+<div class="box ok"><b>Execução real do firmware (Wokwi, 17/11/2026):</b> o <code>sketch.ino</code> e o <code>diagram.json</code> foram
+carregados no simulador Wokwi e executados. O ESP32 conectou à rede, sincronizou o relógio por NTP e enviou leituras JSON. Variamos o DHT22 de 26 °C/50% até
+36 °C/60%, e os LEDs passaram de verde para amarelo e vermelho, com bipe. As 11 linhas capturadas estão em <code>docs/evidencia_wokwi_serial.jsonl</code>: o backend
+aceitou todas, e o índice calculado no chip coincidiu com o do Python, com diferença &lt; 0,05 °C (<code>docs/evidencia_wokwi_ingestao.txt</code>). Além disso,
+a fórmula embarcada é compilada e comparada com a versão em Python em 221 combinações nos testes automatizados. Não testamos em placa física.</div>
+<figure class="img"><img src="img/wokwi_perigo.png" style="width:100%"><figcaption>Figura 1b — Firmware do Brisa rodando no Wokwi: DHT22 em 36 °C e 60% → índice 48,1 °C, faixa Perigo, LED vermelho aceso e linhas JSON no monitor serial.</figcaption></figure>
 
 <h2>2.11 Interfaces</h2>
 <p><b>Painel web (Streamlit)</b>, para a coordenação, com quatro abas: <i>Boletim das 09h</i> (cartões com as condições da manhã, faixa prevista com cor,
@@ -539,25 +541,25 @@ sob telhado de fibrocimento acumula mais tempo em <i>Perigo</i>, e o painel indi
 <figure class="img"><img src="img/app_salas.png" style="width:100%"><figcaption>Figura 11 — Painel Brisa: ambientes da escola fictícia (leituras SIMULADAS) e resumo vindo do SQLite.</figcaption></figure>
 
 <h2>3.4 Testes e evidências</h2>
-<p>A suíte <code>tests/test_brisa.py</code> tem <b>30 casos, todos aprovados</b>. Ela cobre: conferência do índice com a tabela do NWS; limites das faixas;
+<p>A suíte <code>tests/test_brisa.py</code> tem <b>32 casos, todos aprovados</b>. Ela cobre: conferência do índice com a tabela do NWS; limites das faixas;
 entradas inválidas; limpeza (duplicatas, valores impossíveis, interpolação); ausência de vazamento no dataset de ML; regras de alerta; validação das linhas do
 ESP32; ingestão com deduplicação e rejeição; regras <code>CHECK</code> do banco; previsões válidas; superioridade do modelo sobre a linha de base; e
 <b>equivalência entre a fórmula em C++ do ESP32 (compilada no teste) e a versão em Python</b>.</p>
-<p><b>Bug encontrado pelos testes:</b> o teste de integridade do banco falhou na primeira execução porque <code>INSERT OR IGNORE</code> descartava em silêncio
-leituras impossíveis e as contava como "duplicadas". A correção está no Código 5.</p>
+<p><b>Bugs encontrados pelos testes:</b> o teste de integridade do banco falhou na primeira execução porque <code>INSERT OR IGNORE</code> descartava em silêncio
+leituras impossíveis e as contava como "duplicadas". A correção está no Código 5. <b>Segundo bug</b>, encontrado ao ingerir a saída real do firmware no Wokwi: o horário era gravado só até os minutos, e leituras feitas a cada 2 segundos viravam duplicatas (10 de 11). Passamos a gravar com segundos e criamos um teste de regressão que ingere a saída real do ESP32.</p>
 <p class="ev">Trecho de docs/evidencia_testes.txt:</p>
-<pre class="ev">tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{&quot;dispositivo&quot;:&quot;x&quot;,&quot;temp&quot;:30,&quot;umid&quot;:50}] PASSED [ 70%]
-tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{&quot;dispositivo&quot;: &quot;brisa-sala-21&quot;, &quot;ts&quot;: &quot;2025-02-17T10:00:00&quot;, &quot;temp&quot;: 85, &quot;umid&quot;: 60.0}] PASSED [ 73%]
-tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{&quot;dispositivo&quot;: &quot;brisa-sala-21&quot;, &quot;ts&quot;: &quot;2025-02-17T10:00:00&quot;, &quot;temp&quot;: 34.0, &quot;umid&quot;: 101}] PASSED [ 76%]
-tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{&quot;dispositivo&quot;: &quot;brisa-sala-21&quot;, &quot;ts&quot;: &quot;&quot;, &quot;temp&quot;: 34.0, &quot;umid&quot;: 60.0}] PASSED [ 80%]
-tests/test_brisa.py::test_ingestao_grava_deduplica_e_alerta PASSED       [ 83%]
-tests/test_brisa.py::test_banco_rejeita_valor_fisicamente_impossivel PASSED [ 86%]
-tests/test_brisa.py::test_previsao_retorna_campos_validos PASSED         [ 90%]
-tests/test_brisa.py::test_previsao_sem_atributos_falha PASSED            [ 93%]
-tests/test_brisa.py::test_modelo_supera_linha_de_base PASSED             [ 96%]
-tests/test_brisa.py::test_formula_do_esp32_igual_a_do_python PASSED      [100%]
+<pre class="ev">tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{&quot;dispositivo&quot;: &quot;brisa-sala-21&quot;, &quot;ts&quot;: &quot;2025-02-17T10:00:00&quot;, &quot;temp&quot;: 34.0, &quot;umid&quot;: 101}] PASSED [ 71%]
+tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{&quot;dispositivo&quot;: &quot;brisa-sala-21&quot;, &quot;ts&quot;: &quot;&quot;, &quot;temp&quot;: 34.0, &quot;umid&quot;: 60.0}] PASSED [ 75%]
+tests/test_brisa.py::test_ingestao_grava_deduplica_e_alerta PASSED       [ 78%]
+tests/test_brisa.py::test_banco_rejeita_valor_fisicamente_impossivel PASSED [ 81%]
+tests/test_brisa.py::test_previsao_retorna_campos_validos PASSED         [ 84%]
+tests/test_brisa.py::test_previsao_sem_atributos_falha PASSED            [ 87%]
+tests/test_brisa.py::test_modelo_supera_linha_de_base PASSED             [ 90%]
+tests/test_brisa.py::test_formula_do_esp32_igual_a_do_python PASSED      [ 93%]
+tests/test_brisa.py::test_leituras_com_segundos_nao_viram_duplicatas PASSED [ 96%]
+tests/test_brisa.py::test_saida_real_do_firmware_no_wokwi_e_aceita PASSED [100%]
 
-============================== 30 passed in 4.60s ==============================</pre>
+============================== 32 passed in 3.69s ==============================</pre>
 <p class="ev">Trecho de docs/evidencia_execucao_pipeline.txt (python src/main.py tudo):</p>
 <pre class="ev">Alerta de Perigo (limiar calibrado): {&#x27;limiar_probabilidade&#x27;: 0.1, &#x27;escolhido_em&#x27;: &#x27;validação temporal 2021-2023 (maior recall com precisão &gt;= 35%)&#x27;, &#x27;recall_validacao&#x27;: 0.861, &#x27;recall_teste&#x27;: 0.868, &#x27;precisao_teste&#x27;: 0.235, &#x27;dias_perigo_reais_teste&#x27;: 76, &#x27;alertas_emitidos_teste&#x27;: 281}
 
@@ -574,7 +576,7 @@ Boletins das 09h (previsão x observado):
   2025-02-20: previsto 37.2 °C (Cautela extrema) | observado 37.5 °C (Cautela extrema)
   2025-02-21: previsto 36.6 °C (Cautela extrema + aviso de Perigo) | observado 35.2 °C (Cautela extrema)
 
-Concluído em 31.3 s</pre>
+Concluído em 26.7 s</pre>
 <p>O menu de terminal também foi executado com entradas roteirizadas, inclusive inválidas (texto no lugar de número, sábado como dia letivo); a saída está em
 <code>docs/evidencia_menu_cli.txt</code>.</p>
 
@@ -589,7 +591,7 @@ fluxo coerente, testado e documentado.</p>
 <ul>
 <li><b>Dados externos em grade:</b> a ERA5 (9 a 25 km) suaviza extremos locais. O modelo prevê o calor <i>externo</i>, e o interno depende do prédio.</li>
 <li><b>Leituras internas simuladas:</b> o aquecimento por ambiente é uma hipótese não calibrada. Um piloto precisa de medições reais para ajustá-lo.</li>
-<li><b>Hardware:</b> o firmware foi validado na lógica (fórmula testada), mas a execução no Wokwi ou na placa ainda precisa ser registrada pela equipe.</li>
+<li><b>Hardware:</b> o firmware foi executado e validado no simulador Wokwi, mas ainda não numa placa física com sensor real.</li>
 <li><b>Classe Perigo:</b> rara (2,9% dos dias de teste). O aviso preventivo troca precisão (23,5%) por recall (86,8%).</li>
 <li><b>Índice do NWS:</b> foi calibrado para adultos, à sombra e com vento fraco. Ao sol, o estresse pode ser maior, e crianças podem ser mais sensíveis.</li>
 <li><b>Calendário:</b> feriados e férias não foram excluídos do "horário escolar".</li>

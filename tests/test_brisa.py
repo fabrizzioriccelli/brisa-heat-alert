@@ -168,3 +168,21 @@ def test_formula_do_esp32_igual_a_do_python(tmp_path):
             assert nomes[int(nivel)] == classificar(ic_py)
         n += 1
     assert n > 150
+
+
+def test_leituras_com_segundos_nao_viram_duplicatas(banco_temp):
+    # Bug real achado com o firmware no Wokwi: leituras a cada 2 s eram descartadas
+    linhas = [_linha(ts="2025-02-17T10:00:01"), _linha(ts="2025-02-17T10:00:03")]
+    s = sensor.ingerir(linhas, caminho_banco=banco_temp)
+    assert s["gravadas"] == 2 and s["duplicadas"] == 0
+
+
+def test_saida_real_do_firmware_no_wokwi_e_aceita(banco_temp):
+    arq = RAIZ / "docs" / "evidencia_wokwi_serial.jsonl"
+    linhas = arq.read_text(encoding="utf-8").splitlines()
+    s = sensor.ingerir(linhas, origem="esp32", caminho_banco=banco_temp)
+    assert s["rejeitadas"] == 0 and s["gravadas"] == len(linhas)
+    for l in linhas:
+        d = json.loads(l)
+        assert abs(d["ic"] - indice_de_calor(d["temp"], d["umid"])) < 0.06
+        assert d["cat"] == classificar(indice_de_calor(d["temp"], d["umid"]))

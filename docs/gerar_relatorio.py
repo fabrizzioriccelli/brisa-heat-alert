@@ -314,9 +314,8 @@ H.append(f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><titl
   <div class="faixa"></div>
   <p class="titulo">Brisa</p>
   <p class="sub">Calor seguro na escola: previsão com IA, sensores nas salas e<br>recomendações para proteger estudantes durante o calor extremo</p>
-  <div class="rot">Grupo</div><ul><li><b>{e(equipe['grupo'])}</b></li></ul>
   <div class="rot">Integrantes</div><ul>{integrantes}</ul>
-  <div class="rot">Turma</div><ul><li>{e(equipe['turma'])}</li></ul>
+  <div class="rot">Curso</div><ul><li>Graduação em Inteligência Artificial — FIAP ON (1º ano, Fase 3)</li></ul>
  </div>
  <div>
   <div class="rot">Links para correção</div>
@@ -530,9 +529,12 @@ sem interromper o lote:</p>
 <p>Para não sobrecarregar a equipe com notificações, o motor de alertas só alerta a partir de <i>Cautela extrema</i>, alerta de imediato quando a
 situação piora e repete a mesma faixa no máximo a cada 60 minutos, no mesmo ritmo das pausas de hidratação recomendadas:</p>
 {codigo(funcao('brisa/alertas.py', 'deve_alertar'), 'Código 8 — src/brisa/alertas.py: regra de disparo de alertas')}
-<div class="box info"><b>Situação do hardware:</b> o firmware e o circuito (<code>diagram.json</code>) foram escritos para o simulador Wokwi. A fórmula
-embarcada foi compilada e testada automaticamente contra a versão Python em 221 combinações de temperatura e umidade (diferença &lt; 0,05 °C). A execução
-na placa física ou no Wokwi deve ser registrada pela equipe no vídeo. Até lá, ela é um <b>resultado esperado</b>.</div>
+<div class="box ok"><b>Execução real do firmware (Wokwi, 17/11/2026):</b> o <code>sketch.ino</code> e o <code>diagram.json</code> foram
+carregados no simulador Wokwi e executados. O ESP32 conectou à rede, sincronizou o relógio por NTP e enviou leituras JSON. Variamos o DHT22 de 26 °C/50% até
+36 °C/60%, e os LEDs passaram de verde para amarelo e vermelho, com bipe. As 11 linhas capturadas estão em <code>docs/evidencia_wokwi_serial.jsonl</code>: o backend
+aceitou todas, e o índice calculado no chip coincidiu com o do Python, com diferença &lt; 0,05 °C (<code>docs/evidencia_wokwi_ingestao.txt</code>). Além disso,
+a fórmula embarcada é compilada e comparada com a versão em Python em 221 combinações nos testes automatizados. Não testamos em placa física.</div>
+{fig('wokwi_perigo.png', 'Figura 1b — Firmware do Brisa rodando no Wokwi: DHT22 em 36 °C e 60% → índice 48,1 °C, faixa Perigo, LED vermelho aceso e linhas JSON no monitor serial.', '100%')}
 
 <h2>2.11 Interfaces</h2>
 <p><b>Painel web (Streamlit)</b>, para a coordenação, com quatro abas: <i>Boletim das 09h</i> (cartões com as condições da manhã, faixa prevista com cor,
@@ -603,8 +605,8 @@ sob telhado de fibrocimento acumula mais tempo em <i>Perigo</i>, e o painel indi
 entradas inválidas; limpeza (duplicatas, valores impossíveis, interpolação); ausência de vazamento no dataset de ML; regras de alerta; validação das linhas do
 ESP32; ingestão com deduplicação e rejeição; regras <code>CHECK</code> do banco; previsões válidas; superioridade do modelo sobre a linha de base; e
 <b>equivalência entre a fórmula em C++ do ESP32 (compilada no teste) e a versão em Python</b>.</p>
-<p><b>Bug encontrado pelos testes:</b> o teste de integridade do banco falhou na primeira execução porque <code>INSERT OR IGNORE</code> descartava em silêncio
-leituras impossíveis e as contava como "duplicadas". A correção está no Código 5.</p>
+<p><b>Bugs encontrados pelos testes:</b> o teste de integridade do banco falhou na primeira execução porque <code>INSERT OR IGNORE</code> descartava em silêncio
+leituras impossíveis e as contava como "duplicadas". A correção está no Código 5. <b>Segundo bug</b>, encontrado ao ingerir a saída real do firmware no Wokwi: o horário era gravado só até os minutos, e leituras feitas a cada 2 segundos viravam duplicatas (10 de 11). Passamos a gravar com segundos e criamos um teste de regressão que ingere a saída real do ESP32.</p>
 <p class="ev">Trecho de docs/evidencia_testes.txt:</p>
 <pre class="ev">{e(chr(10).join(testes.strip().splitlines()[-12:]))}</pre>
 <p class="ev">Trecho de docs/evidencia_execucao_pipeline.txt (python src/main.py tudo):</p>
@@ -626,7 +628,7 @@ fluxo coerente, testado e documentado.</p>
 <ul>
 <li><b>Dados externos em grade:</b> a ERA5 (9 a 25 km) suaviza extremos locais. O modelo prevê o calor <i>externo</i>, e o interno depende do prédio.</li>
 <li><b>Leituras internas simuladas:</b> o aquecimento por ambiente é uma hipótese não calibrada. Um piloto precisa de medições reais para ajustá-lo.</li>
-<li><b>Hardware:</b> o firmware foi validado na lógica (fórmula testada), mas a execução no Wokwi ou na placa ainda precisa ser registrada pela equipe.</li>
+<li><b>Hardware:</b> o firmware foi executado e validado no simulador Wokwi, mas ainda não numa placa física com sensor real.</li>
 <li><b>Classe Perigo:</b> rara (2,9% dos dias de teste). O aviso preventivo troca precisão ({pct(ap['precisao_teste'])}) por recall ({pct(ap['recall_teste'])}).</li>
 <li><b>Índice do NWS:</b> foi calibrado para adultos, à sombra e com vento fraco. Ao sol, o estresse pode ser maior, e crianças podem ser mais sensíveis.</li>
 <li><b>Calendário:</b> feriados e férias não foram excluídos do "horário escolar".</li>

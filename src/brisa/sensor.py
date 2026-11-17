@@ -111,7 +111,7 @@ def ingerir(linhas, origem="simulado", caminho_banco=None) -> dict:
                 continue
             ic = indice_de_calor(d["temp"], d["umid"])
             cat = classificar(ic)
-            ok = banco.inserir_leitura(con, amb["id"], d["momento"].isoformat(timespec="minutes"),
+            ok = banco.inserir_leitura(con, amb["id"], d["momento"].isoformat(timespec="seconds"),
                                        d["temp"], d["umid"], ic, cat, origem)
             if not ok:
                 stats["duplicadas"] += 1
@@ -120,7 +120,7 @@ def ingerir(linhas, origem="simulado", caminho_banco=None) -> dict:
             chave = (amb["id"], d["momento"].date())
             if alertas.deve_alertar(cat, d["momento"], ultimo_alerta.get(chave)):
                 banco.inserir_alerta(con, amb["escola_id"], amb["id"],
-                                     d["momento"].isoformat(timespec="minutes"), "tempo_real",
+                                     d["momento"].isoformat(timespec="seconds"), "tempo_real",
                                      cat, ic, alertas.montar_mensagem(amb["nome"], cat, ic))
                 ultimo_alerta[chave] = {"categoria": cat, "momento": d["momento"]}
                 stats["alertas"] += 1

@@ -14,10 +14,6 @@
 
 **Global Solution 2026.2 · CitizenTech: tecnologia centrada no cidadão**
 
-## Nome do grupo
-
-**[NOME DO GRUPO]**
-
 ## 👨‍🎓 Integrantes: 
 - <a href="https://github.com/brunacollavite">Bruna Collavite</a> — RM 576285
 - <a href="https://github.com/Guntooo">Fabio Guntovitch</a> — RM 575582
@@ -58,7 +54,8 @@ O **Brisa** junta três camadas:
 | Regressão do pico, teste 2024–2025 (Random Forest) | MAE **1,33 °C**, R² **0,889** (linha de base: MAE 1,85 °C) |
 | Classificação da faixa, teste 2024–2025 (Random Forest) | Acurácia **83,6%**, F1-macro 0,726 (linha de base: 78,0%, 0,665) |
 | Aviso preventivo de *Perigo* (limiar calibrado) | Recall 86,8% (66 de 76 dias); precisão 23,5% |
-| Testes automatizados | **30 de 30 passando** (`docs/evidencia_testes.txt`) |
+| Testes automatizados | **32 de 32 passando** (`docs/evidencia_testes.txt`) |
+| Firmware ESP32 executado no Wokwi | Índice calculado no chip = Python (diferença < 0,05 °C); saída aceita pelo backend (`docs/evidencia_wokwi_*`) |
 
 ### ODS relacionados
 **ODS 3** (Saúde e bem-estar), **ODS 4** (Educação de qualidade), **ODS 11** (Cidades e comunidades sustentáveis) e **ODS 13** (Ação contra a mudança global do clima).
