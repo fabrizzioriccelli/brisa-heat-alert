@@ -1,0 +1,145 @@
+{
+  "n_treino": 5210,
+  "n_teste": 2615,
+  "periodo_treino": "2020-2023",
+  "periodo_teste": "2024-2025",
+  "regressao": [
+    {
+      "modelo": "Linha de base (pico de ontem)",
+      "MAE": 1.848,
+      "RMSE": 2.786,
+      "R2": 0.748
+    },
+    {
+      "modelo": "Regressão Linear",
+      "MAE": 1.544,
+      "RMSE": 2.078,
+      "R2": 0.86
+    },
+    {
+      "modelo": "Random Forest",
+      "MAE": 1.33,
+      "RMSE": 1.846,
+      "R2": 0.889
+    }
+  ],
+  "classificacao": [
+    {
+      "modelo": "Linha de base (faixa de ontem)",
+      "acuracia": 0.78,
+      "f1_macro": 0.665,
+      "recall_cautela_extrema": 0.883,
+      "recall_perigo": 0.487
+    },
+    {
+      "modelo": "Regressão Logística",
+      "acuracia": 0.733,
+      "f1_macro": 0.642,
+      "recall_cautela_extrema": 0.71,
+      "recall_perigo": 0.868
+    },
+    {
+      "modelo": "Árvore de Decisão",
+      "acuracia": 0.771,
+      "f1_macro": 0.67,
+      "recall_cautela_extrema": 0.791,
+      "recall_perigo": 0.776
+    },
+    {
+      "modelo": "Random Forest",
+      "acuracia": 0.836,
+      "f1_macro": 0.726,
+      "recall_cautela_extrema": 0.904,
+      "recall_perigo": 0.553
+    }
+  ],
+  "relatorio_melhor_classificador": {
+    "Normal": {
+      "precision": 0.8321299638989169,
+      "recall": 0.8747628083491461,
+      "f1-score": 0.8529139685476411,
+      "support": 527.0
+    },
+    "Cautela": {
+      "precision": 0.658695652173913,
+      "recall": 0.6234567901234568,
+      "f1-score": 0.6405919661733616,
+      "support": 486.0
+    },
+    "Cautela extrema": {
+      "precision": 0.9138502319416832,
+      "recall": 0.9036697247706422,
+      "f1-score": 0.9087314662273476,
+      "support": 1526.0
+    },
+    "Perigo": {
+      "precision": 0.45652173913043476,
+      "recall": 0.5526315789473685,
+      "f1-score": 0.5,
+      "support": 76.0
+    },
+    "accuracy": 0.8355640535372849,
+    "macro avg": {
+      "precision": 0.7152993967862369,
+      "recall": 0.7386302255476535,
+      "f1-score": 0.7255593502370876,
+      "support": 2615.0
+    },
+    "weighted avg": {
+      "precision": 0.8366690952383069,
+      "recall": 0.8355640535372849,
+      "f1-score": 0.8357696269398825,
+      "support": 2615.0
+    }
+  },
+  "alerta_perigo": {
+    "limiar_probabilidade": 0.1,
+    "escolhido_em": "validação temporal 2021-2023 (maior recall com precisão >= 35%)",
+    "recall_validacao": 0.861,
+    "recall_teste": 0.868,
+    "precisao_teste": 0.235,
+    "dias_perigo_reais_teste": 76,
+    "alertas_emitidos_teste": 281
+  },
+  "classificacao_por_cidade": [
+    {
+      "cidade": "Cuiabá (MT)",
+      "acuracia": 0.788,
+      "dias": 523
+    },
+    {
+      "cidade": "Manaus (AM)",
+      "acuracia": 0.899,
+      "dias": 523
+    },
+    {
+      "cidade": "Rio de Janeiro (RJ)",
+      "acuracia": 0.728,
+      "dias": 523
+    },
+    {
+      "cidade": "São Paulo (SP)",
+      "acuracia": 0.836,
+      "dias": 523
+    },
+    {
+      "cidade": "Teresina (PI)",
+      "acuracia": 0.927,
+      "dias": 523
+    }
+  ],
+  "melhor_regressor": "Random Forest",
+  "melhor_classificador": "Random Forest",
+  "importancia_atributos": {
+    "temp_09h": 0.5559,
+    "ic_09h": 0.3004,
+    "ic_max_tarde_ontem": 0.0634,
+    "radiacao_manha": 0.0228,
+    "aquecimento_manha": 0.0193,
+    "vento_09h": 0.0158,
+    "umidade_09h": 0.0074,
+    "temp_06h": 0.0068,
+    "mes_sen": 0.0043,
+    "mes_cos": 0.004
+  }
+}

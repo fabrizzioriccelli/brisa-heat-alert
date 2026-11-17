@@ -1,0 +1,15 @@
+# Testado com Python 3.15 (funciona a partir do 3.10)
+pandas==3.1.1
+numpy==2.5.5
+scipy==1.18.1
+matplotlib==3.11.2
+seaborn==0.13.2
+scikit-learn==1.9.1
+joblib==1.6.0
+streamlit==1.67.0
+altair==6.3.0
+pytest==9.2.0
+# Opcionais: notebook
+nbformat
+nbclient
+ipykernel

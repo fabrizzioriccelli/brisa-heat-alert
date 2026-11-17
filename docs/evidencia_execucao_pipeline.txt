@@ -1,0 +1,75 @@
+
+=== Preparação dos dados reais ===
+{
+  "linhas_entrada": 263040,
+  "duplicatas_removidas": 0,
+  "valores_fora_da_faixa": 0,
+  "nulos_antes": 0,
+  "nulos_depois": 0,
+  "linhas_saida": 263040,
+  "arquivo": "data/processed/clima_horario_5_capitais.csv.gz"
+}
+Dataset diário: 7825 dias úteis x 15 colunas → dataset_alerta_diario.csv
+
+=== Análise exploratória e estatística ===
+
+Estatísticas do índice de calor em horário escolar (°C):
+                     media  desvio_padrao  mediana   p95  maximo  horas_escolares  pct_horas_alerta
+Teresina (PI)         32.4            3.8     33.2  37.5    40.5            17226              61.1
+Manaus (AM)           31.5            3.8     32.2  37.0    40.5            17226              49.6
+Cuiabá (MT)           30.7            5.6     31.6  38.4    43.5            17226              45.3
+Rio de Janeiro (RJ)   26.5            4.9     25.5  35.7    47.8            17226              14.8
+São Paulo (SP)        22.1            5.0     22.3  29.9    36.6            17226               1.0
+
+Horas de aula por ano com IC ≥ 32,2 °C:
+ano                  2020  2021  2022  2023  2024  2025
+Cuiabá (MT)          1452  1200  1032  1360  1511  1244
+Manaus (AM)          1483  1112  1208  1532  1830  1379
+Rio de Janeiro (RJ)   330   309   351   518   541   495
+São Paulo (SP)         34     3     0    55    50    23
+Teresina (PI)        1707  1644  1546  1766  1942  1922
+
+Comparação 2020-2022 x 2023-2025 (pico diário, teste t de Welch):
+                     media_2020_2022  media_2023_2025  diferenca      t       p_valor
+cidade                                                                               
+Cuiabá (MT)                    34.14            35.11       0.97   4.78  1.900000e-06
+Manaus (AM)                    34.07            35.24       1.18   9.86  2.700000e-22
+Rio de Janeiro (RJ)            28.18            29.56       1.38   5.19  2.400000e-07
+São Paulo (SP)                 24.55            25.84       1.29   5.94  3.400000e-09
+Teresina (PI)                  35.04            36.09       1.05  11.05  2.200000e-27
+
+Validação do cálculo: {'pearson_ic_vs_sensacao_openmeteo': 0.969, 'diferenca_media_C': -1.55}
+Figuras salvas em docs/img/
+
+=== Treinamento e avaliação dos modelos ===
+Treino: 5210 dias (2020-2023) | Teste: 2615 dias (2024-2025)
+
+Regressão do pico da tarde:
+                       modelo   MAE  RMSE    R2
+Linha de base (pico de ontem) 1.848 2.786 0.748
+             Regressão Linear 1.544 2.078 0.860
+                Random Forest 1.330 1.846 0.889
+
+Classificação da faixa de risco:
+                        modelo  acuracia  f1_macro  recall_cautela_extrema  recall_perigo
+Linha de base (faixa de ontem)     0.780     0.665                   0.883          0.487
+           Regressão Logística     0.733     0.642                   0.710          0.868
+             Árvore de Decisão     0.771     0.670                   0.791          0.776
+                 Random Forest     0.836     0.726                   0.904          0.553
+
+Alerta de Perigo (limiar calibrado): {'limiar_probabilidade': 0.1, 'escolhido_em': 'validação temporal 2021-2023 (maior recall com precisão >= 35%)', 'recall_validacao': 0.861, 'recall_teste': 0.868, 'precisao_teste': 0.235, 'dias_perigo_reais_teste': 76, 'alertas_emitidos_teste': 281}
+
+=== Escola demonstração — sensores simulados, banco SQLite e boletins ===
+Semana simulada: 2025-02-17 a 2025-02-21 | arquivo: data/simulated/leituras_esp32_simuladas.jsonl
+Leituras: recebidas 917, gravadas 915, rejeitadas 2, alertas em tempo real 166
+  rejeitada → linha 11: JSON malformado (Unterminated string starting at)
+  rejeitada → linha 26: temperatura fora da faixa do sensor: 85.0
+
+Boletins das 09h (previsão x observado):
+  2025-02-17: previsto 38.7 °C (Cautela extrema + aviso de Perigo) | observado 38.2 °C (Cautela extrema)
+  2025-02-18: previsto 39.5 °C (Perigo) | observado 39.8 °C (Perigo)
+  2025-02-19: previsto 36.6 °C (Cautela extrema + aviso de Perigo) | observado 35.8 °C (Cautela extrema)
+  2025-02-20: previsto 37.2 °C (Cautela extrema) | observado 37.5 °C (Cautela extrema)
+  2025-02-21: previsto 36.6 °C (Cautela extrema + aviso de Perigo) | observado 35.2 °C (Cautela extrema)
+
+Concluído em 31.3 s

@@ -1,0 +1,39 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0 -- /Users/riccelli/Library/Application Support/Claude/scratch-workspaces/d297ae68-13e1-4858-b7bd-fcd37469265a/df00f155-bfa8-4344-9421-70bf158e5435/scratch-2026-11-17-93bd97/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/riccelli/Library/Application Support/Claude/scratch-workspaces/d297ae68-13e1-4858-b7bd-fcd37469265a/df00f155-bfa8-4344-9421-70bf158e5435/scratch-2026-11-17-93bd97/FIAP-PORTFOLIO-AI/1TIAO/GLOBAL-SOLUTION-1
+plugins: anyio-4.16.0
+collecting ... collected 30 items
+
+tests/test_brisa.py::test_indice_confere_com_tabela_nws[90-70-106] PASSED [  3%]
+tests/test_brisa.py::test_indice_confere_com_tabela_nws[86-90-105] PASSED [  6%]
+tests/test_brisa.py::test_indice_confere_com_tabela_nws[100-40-109] PASSED [ 10%]
+tests/test_brisa.py::test_indice_confere_com_tabela_nws[80-40-80] PASSED [ 13%]
+tests/test_brisa.py::test_ramo_simples_para_clima_ameno PASSED           [ 16%]
+tests/test_brisa.py::test_ajuste_umidade_alta_aumenta_indice PASSED      [ 20%]
+tests/test_brisa.py::test_faixas[20-Normal] PASSED                       [ 23%]
+tests/test_brisa.py::test_faixas[26.7-Cautela] PASSED                    [ 26%]
+tests/test_brisa.py::test_faixas[32.19-Cautela] PASSED                   [ 30%]
+tests/test_brisa.py::test_faixas[32.2-Cautela extrema] PASSED            [ 33%]
+tests/test_brisa.py::test_faixas[39.4-Perigo] PASSED                     [ 36%]
+tests/test_brisa.py::test_faixas[55-Perigo extremo] PASSED               [ 40%]
+tests/test_brisa.py::test_entradas_invalidas[70-50] PASSED               [ 43%]
+tests/test_brisa.py::test_entradas_invalidas[30-120] PASSED              [ 46%]
+tests/test_brisa.py::test_entradas_invalidas[30--1] PASSED               [ 50%]
+tests/test_brisa.py::test_entradas_invalidas[None-50] PASSED             [ 53%]
+tests/test_brisa.py::test_limpeza_remove_duplicatas_e_valores_impossiveis PASSED [ 56%]
+tests/test_brisa.py::test_dataset_diario_sem_vazamento PASSED            [ 60%]
+tests/test_brisa.py::test_regras_de_alerta PASSED                        [ 63%]
+tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{"dispositivo":"x","ts":"2025-02-17T10:0] PASSED [ 66%]
+tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{"dispositivo":"x","temp":30,"umid":50}] PASSED [ 70%]
+tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{"dispositivo": "brisa-sala-21", "ts": "2025-02-17T10:00:00", "temp": 85, "umid": 60.0}] PASSED [ 73%]
+tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{"dispositivo": "brisa-sala-21", "ts": "2025-02-17T10:00:00", "temp": 34.0, "umid": 101}] PASSED [ 76%]
+tests/test_brisa.py::test_validacao_rejeita_linhas_ruins[{"dispositivo": "brisa-sala-21", "ts": "", "temp": 34.0, "umid": 60.0}] PASSED [ 80%]
+tests/test_brisa.py::test_ingestao_grava_deduplica_e_alerta PASSED       [ 83%]
+tests/test_brisa.py::test_banco_rejeita_valor_fisicamente_impossivel PASSED [ 86%]
+tests/test_brisa.py::test_previsao_retorna_campos_validos PASSED         [ 90%]
+tests/test_brisa.py::test_previsao_sem_atributos_falha PASSED            [ 93%]
+tests/test_brisa.py::test_modelo_supera_linha_de_base PASSED             [ 96%]
+tests/test_brisa.py::test_formula_do_esp32_igual_a_do_python PASSED      [100%]
+
+============================== 30 passed in 4.60s ==============================

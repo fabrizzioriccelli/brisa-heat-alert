@@ -1,0 +1,104 @@
+
+----------------------------------------------------------------
+  BRISA — calor seguro na escola
+----------------------------------------------------------------
+  1. Calcular índice de calor de um ambiente
+  2. Boletim das 09h (previsão da tarde com IA)
+  3. Importar leituras de sensores (ESP32)
+  4. Relatório dos ambientes da escola
+  0. Sair
+Opção: ----------------------------------------------------------------
+Temperatura do ambiente (°C): Umidade relativa (%):   ! Digite um número válido.
+Umidade relativa (%): 
+  Índice de calor: 45.0 °C  →  Perigo
+   • Suspender atividades físicas intensas.
+   • Remanejar turmas das salas mais quentes para os ambientes mais frescos indicados pelo Brisa.
+   • Avisar a coordenação e as famílias; acionar o protocolo de saúde da rede de ensino.
+   • Reforçar a hidratação e oferecer pausas em local fresco.
+
+----------------------------------------------------------------
+  BRISA — calor seguro na escola
+----------------------------------------------------------------
+  1. Calcular índice de calor de um ambiente
+  2. Boletim das 09h (previsão da tarde com IA)
+  3. Importar leituras de sensores (ESP32)
+  4. Relatório dos ambientes da escola
+  0. Sair
+Opção: ----------------------------------------------------------------
+  1. São Paulo (SP)
+  2. Rio de Janeiro (RJ)
+  3. Cuiabá (MT)
+  4. Teresina (PI)
+  5. Manaus (AM)
+Escolha a cidade: Data (AAAA-MM-DD, dia útil entre 2020-01-02 e 2025-12-31): 
+  BOLETIM DAS 09h — Rio de Janeiro (RJ) — 2025-02-18
+  Manhã: 33.9 °C, UR 38%, IC 34.8 °C
+  Pico previsto (12h-17h): 39.5 °C  →  Perigo
+  Probabilidades: Cautela 0%, Cautela extrema 25%, Normal 0%, Perigo 75%
+   • Suspender atividades físicas intensas.
+   • Remanejar turmas das salas mais quentes para os ambientes mais frescos indicados pelo Brisa.
+   • Avisar a coordenação e as famílias; acionar o protocolo de saúde da rede de ensino.
+   • Reforçar a hidratação e oferecer pausas em local fresco.
+  [Verificação] Pico real observado: 39.8 °C (Perigo)
+
+----------------------------------------------------------------
+  BRISA — calor seguro na escola
+----------------------------------------------------------------
+  1. Calcular índice de calor de um ambiente
+  2. Boletim das 09h (previsão da tarde com IA)
+  3. Importar leituras de sensores (ESP32)
+  4. Relatório dos ambientes da escola
+  0. Sair
+Opção: ----------------------------------------------------------------
+  1. São Paulo (SP)
+  2. Rio de Janeiro (RJ)
+  3. Cuiabá (MT)
+  4. Teresina (PI)
+  5. Manaus (AM)
+Escolha a cidade: Data (AAAA-MM-DD, dia útil entre 2020-01-02 e 2025-12-31):   ! Sem dados de manhã completos para rio_de_janeiro em 2025-02-22 (ou não é dia útil).
+
+----------------------------------------------------------------
+  BRISA — calor seguro na escola
+----------------------------------------------------------------
+  1. Calcular índice de calor de um ambiente
+  2. Boletim das 09h (previsão da tarde com IA)
+  3. Importar leituras de sensores (ESP32)
+  4. Relatório dos ambientes da escola
+  0. Sair
+Opção: ----------------------------------------------------------------
+  Datas com leituras: 2025-02-17, 2025-02-18, 2025-02-19, 2025-02-20, 2025-02-21
+Data (Enter = todas): 
+  Ambiente                                        IC méd  IC máx min alerta
+  Sala 21 — 2º andar, telhado de fibrocimento       41.8    47.9        610
+  Quadra coberta                                    39.3    45.6        590
+  Sala 12 — térreo, ventilação cruzada              38.1    42.8        590
+
+  Últimos alertas:
+   2025-02-21T16:20  [CAUTELA EXTREMA] Sala 21 — 2º andar, telhado de fibrocimento: índice de calor 37.8 °C. Pa
+   2025-02-21T16:10  [CAUTELA EXTREMA] Quadra coberta: índice de calor 34.0 °C. Pausas para hidratação a cada 3
+   2025-02-21T16:10  [CAUTELA EXTREMA] Sala 12 — térreo, ventilação cruzada: índice de calor 35.1 °C. Pausas pa
+   2025-02-21T15:20  [PERIGO] Sala 21 — 2º andar, telhado de fibrocimento: índice de calor 41.6 °C. Suspender a
+   2025-02-21T15:10  [CAUTELA EXTREMA] Quadra coberta: índice de calor 36.7 °C. Pausas para hidratação a cada 3
+   2025-02-21T15:10  [CAUTELA EXTREMA] Sala 12 — térreo, ventilação cruzada: índice de calor 34.8 °C. Pausas pa
+   2025-02-21T14:20  [PERIGO] Sala 21 — 2º andar, telhado de fibrocimento: índice de calor 45.6 °C. Suspender a
+   2025-02-21T14:10  [PERIGO] Quadra coberta: índice de calor 40.9 °C. Suspender atividades físicas intensas.
+
+----------------------------------------------------------------
+  BRISA — calor seguro na escola
+----------------------------------------------------------------
+  1. Calcular índice de calor de um ambiente
+  2. Boletim das 09h (previsão da tarde com IA)
+  3. Importar leituras de sensores (ESP32)
+  4. Relatório dos ambientes da escola
+  0. Sair
+Opção:   ! Opção inválida.
+
+----------------------------------------------------------------
+  BRISA — calor seguro na escola
+----------------------------------------------------------------
+  1. Calcular índice de calor de um ambiente
+  2. Boletim das 09h (previsão da tarde com IA)
+  3. Importar leituras de sensores (ESP32)
+  4. Relatório dos ambientes da escola
+  0. Sair
+Opção: Até logo!
