@@ -21,7 +21,7 @@ Graduação em Inteligência Artificial (FIAP ON) · 1TIAO · Fase 3
 
 | 📄 Relatório | 🎬 Vídeo | 📓 Notebook | 🖥️ Painel | 🔌 ESP32 |
 |:---:|:---:|:---:|:---:|:---:|
-| [PDF de entrega](docs/Brisa_GS2026-2_Relatorio.pdf) | [YouTube (não listado)](http://url-aqui) | [Análise e modelos](notebooks/brisa_analise_exploratoria.ipynb) | [`src/app.py`](src/app.py) | [`src/esp32/`](src/esp32/) |
+| [PDF de entrega](docs/Brisa_GS2026-2_Relatorio.pdf) | [YouTube (não listado)](https://youtu.be/n7Hw76BX5kE) | [Análise e modelos](notebooks/brisa_analise_exploratoria.ipynb) | [`src/app.py`](src/app.py) | [`src/esp32/`](src/esp32/) |
 
 ## 👨‍🎓 Integrantes: 
 - <a href="https://github.com/brunacollavite">Bruna Collavite</a> — RM 576285
@@ -33,7 +33,7 @@ Graduação em Inteligência Artificial (FIAP ON) · 1TIAO · Fase 3
 ## 👩‍🏫 Professores:
 
 ### Tutor(a)
-- <a href="Link do perfil no LinkedIn">[Nome do Tutor]</a>
+- <a href="mailto:profsabrina.otoni@fiap.com.br">Sabrina Otoni</a>
   
 ### Coordenador(a)
 - <a href="https://www.linkedin.com/in/andregodoichiovato/">André Godoi Chiovato</a>
@@ -109,7 +109,7 @@ brisa-gs-2026-2/
 
 ### 🔗 Links do Projeto
 
-* **[Vídeo demonstrativo no YouTube (não listado)](http://url-aqui)**: 4min24s, animado e com legendas ([`docs/legendas_video.srt`](docs/legendas_video.srt)).
+* **[Vídeo demonstrativo no YouTube (não listado)](https://youtu.be/n7Hw76BX5kE)**: 4min24s, animado e com legendas ([`docs/legendas_video.srt`](docs/legendas_video.srt)).
 * **[Relatório em PDF](docs/Brisa_GS2026-2_Relatorio.pdf)**: documento de entrega, com Introdução, Desenvolvimento, Resultados, Conclusões e a checklist dos requisitos da FIAP.
 * **[Firmware e circuito do ESP32](src/esp32/)**: executado no simulador Wokwi, com a saída registrada em [`docs/evidencia_wokwi_serial.jsonl`](docs/evidencia_wokwi_serial.jsonl).
 

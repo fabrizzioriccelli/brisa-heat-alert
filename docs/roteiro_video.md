@@ -35,4 +35,4 @@ O projeto **não concorre ao pódio**, por isso o vídeo não tem a frase "QUERO
 - [x] Demonstração prática: painel, firmware no Wokwi, terminal e testes
 - [x] Duração ≤ 5 min (4:24)
 - [x] Dados simulados chamados de simulados na narração e na tela
-- [ ] Publicar no YouTube como "Não listado" e colocar o link no PDF e no README
+- [x] Publicado no YouTube como "Não listado": https://youtu.be/n7Hw76BX5kE
