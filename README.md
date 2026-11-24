@@ -12,6 +12,8 @@
 
 # 🌬️ Brisa — calor seguro na escola
 
+<p align="center"><b>Português</b> · <a href="README.en.md">English</a></p>
+
 **Global Solution 2026.2 · CitizenTech: tecnologia centrada no cidadão**
 Graduação em Inteligência Artificial (FIAP ON) · 1TIAO · Fase 3
 
