@@ -89,6 +89,10 @@ tests/       pytest suite
 - The model uses one capital per region; smaller cities may behave differently.
 - The trained models are 10 MB and 18 MB `.joblib` files committed to the repository. They can be regenerated with `python src/main.py tudo`; Git LFS or a release asset would be the next step.
 
+## My part
+
+I built the technical work in this repository end to end, with Claude Code as my coding assistant: data collection and preparation, the statistical analysis, the models and their evaluation, the ESP32 firmware and Wokwi circuit, the Python backend and SQLite database, the Streamlit dashboard, the test suite, the visual identity, the report and this documentation.
+
 ## License
 
 Released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/), following the FIAP template.
